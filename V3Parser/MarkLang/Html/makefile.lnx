@@ -1,0 +1,32 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 1999 AkraLogic, Inc.
+#
+#------------------------------------------------------------------------------
+
+PROJECT = MarkLang/Html
+
+include $(AKRAPROJ)/geneMake.lnx
+
+include fileList.common
+
+CFLAGS+= -g
+LIBNAME= libHtml$(SLIB_EXT)
+
+$(LIBNAME): $(LIBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) cru $@ $(LIBOBJS) && \
+	    $(RANLIB) $@ \
+	)
+
+.PHONY : all
+all: $(LIBNAME)
+
+.PHONY : clean
+clean :
+	-@rm -rf $(OBJ_PATH)/*.o
+	-@rm -rf $(OBJ_PATH)/$(LIBNAME)
+
+.PHONY : libs
+libs:
+	-@cp $(OBJ_PATH)/$(LIBNAME) $(LIB_PATH)
+

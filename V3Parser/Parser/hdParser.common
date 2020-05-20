@@ -1,0 +1,9 @@
+BASESRCS=sqlSupport.cpp \
+	commonData.cpp \
+	extractor.cpp \
+	problem.cpp \
+	dbSupport.cpp \
+	pageOfRows.cpp
+
+BASEOBJS=$(BASESRCS:.cpp=.o)
+

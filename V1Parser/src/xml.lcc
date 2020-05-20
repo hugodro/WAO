@@ -1,0 +1,394 @@
+/**************************************************
+* File: xml.lcc.
+* Desc: Implementation of the token parser for the XML subset of SGML.
+* Module: AkraLog : Wao.
+* Rev: 15 fevrier 2000 : REV 0 : Hugo DesRosiers : Creation.
+**************************************************/
+
+%option noyywrap
+%option debug
+%option yyclass="xmlFlexLexer"
+
+%{
+
+#include <ctype.h>
+#include <stdio.h>
+#include <iostream.h>
+#include "sgmlAnalyzer.h"
+#include "xmlLexer.h"
+
+%}
+
+/* 2.2: Characters. */
+
+/* 2.3: Common Syntactic Construct. */
+
+Space		(\040|\011|\015|\012)+
+EmptySpace          (\040|\011|\015|\012)*
+
+LCLetterAnsi	[a-z]
+DigitAnsi		[0-9]
+HexaDigitAnsi	[0-9A-Fa-f]
+UCLetterAnsi	[A-Z]
+
+LetterAnsi	({LCLetterAnsi}|{UCLetterAnsi})
+
+/* For UC, missing CombiningChar, Extender. */
+NameChar	({LetterAnsi}|{DigitAnsi}|\.|\-|_|:)
+NameAnsi	({LetterAnsi}|_|:)({NameChar})*
+NmToken		({NameChar})+
+NmTokens	{NmToken}({Space}{NmToken})+
+
+SimpleNumber        ({DigitAnsi})+
+DblQuote      	"\""
+NotDblQuote	[^\"]
+SngQuote	"'"
+NotSngQuote	[^']
+Ampercent	"&"
+Percent                 "%"
+SemiColon	";"
+QuestionMark        "?"
+EndReference       ({SemiColon}|\015)
+
+CRO	    "&#"
+CROHexa    "&#x"
+STAGO	    "<"
+MDO	"<!"
+PIO	"<?"
+ETAGO   "</"
+DSO	"["
+COM	"--"
+MSC	"]]"
+DSC       "]"
+TAGC	">"
+CDataName	"CDATA"
+
+PIC1		[\040\015\012]
+PIC2		({LetterAnsi}|{DigitAnsi})
+PIC3		[\-()+,\./:=?;!*#@$_%]
+PIC4		({PIC1}|{PIC2}|{PIC3})
+PubIdChar	({PIC4}|{SngQuote})	
+
+EntityValue  ({DblQuote}([^%&"]|{PEReference}|{Reference})* {DblQuote})|({SngQuote}([^%&']|{PEReference}|{Reference})* {SqnQuote})
+
+AttValue	 ({DblQuote}([^<&"]|{Reference})*{DblQuote})|({SngQuote}([^<&']|{Reference})*{SngQuote})
+
+SystemLiteral ({DblQuote}{NotDblQuote}*{DblQuote})|({SngQuote}{NotSngQuote}*{SngQuote})
+
+PubIdLiteral	({DblQuote}{PubIdChar}*{DblQuote})|({SngQuote}{PIC4}*{SngQuote})
+
+
+ /* R66: */
+CharRef			({CRO}{DigitAnsi}+{SemiColon})|({CROHexa}{HexaDigitAnsi}+{SemiColon})
+ /* R67: */
+Reference		{EntityRef}|{CharRef}
+ /* R68: */
+EntityRef		{Ampercent}{NameAnsi}{SemiColon}
+ /* R69: */
+PEReference		 {Percent}{NameAnsi}{SemiColon}
+
+
+/* Tokenizing States. */
+
+%x CDATA
+
+%x Comment
+%x ProcInstr
+%x MarkDef
+%x Attribute
+%x AttribValue
+%x Tag
+%x DeclSubset
+
+%%
+
+ /* 2.4: Character Data and Markup.  */
+ /* TODO: R14. */
+
+ /* 2.5: Comments. */
+
+{MDO}/{COM} {
+     BEGIN(Comment);
+ }
+
+<MarkDef,Comment>{COM}([^-]|-[^-])*{COM}{EmptySpace} {
+
+#if defined(DEBUG_STEPS)
+    if (YYSTATE == MarkDef) {
+	cout << "Found markup declaration.\n";
+    }
+    else {
+	cout << "Found comment.\n";
+    }
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle((YYSTATE == MarkDef) ? SgmlAnalyzer::markup : SgmlAnalyzer::comment, yytext + 2);
+ }
+
+<MarkDef,Comment>{TAGC} {
+    analyzer->handle(SgmlAnalyzer::itemEnd, NULL);
+    BEGIN(INITIAL);
+ }
+
+{MDO}{TAGC} {
+
+#if defined(DEBUG_STEPS)
+     cout << "Empty comment.\n";
+#endif
+     // Nothing done at analyzer level, just reset the parser data.
+ }
+
+
+ /* 2.6: Processing Instructions. */
+{PIO}{NameAnsi} {
+
+#if defined(DEBUG_STEPS)
+     cout << "Found a Proc Instr. name.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::procInstrName, yytext + 2);
+     BEGIN(ProcInstr);
+ }
+
+<ProcInstr>[^>]*{QuestionMark}{TAGC} {
+     /* TODO: Handle Processing Instruction. */
+#if defined(DEBUG_STEPS)
+     cout << "end of proc instr.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::procInstr, yytext);
+     BEGIN(INITIAL);
+ }
+
+
+ /* 2.7: CDATA. */
+{MDO}{DSO}{CDataName}\[ {
+
+#if defined(DEBUG_STEPS)
+     cout << "Beginning of CDATA.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::cDataStart, yytext);
+
+     BEGIN(CDATA);
+ }
+
+<CDATA>{MSC}{TAGC} {
+
+#if defined(DEBUG_STEPS)
+     cout << "End of CDATA.\n";
+#endif
+    analyzer->handle(SgmlAnalyzer::itemEnd, NULL);
+     BEGIN(INITIAL);
+ }
+
+ /* 2.8: Prolog and document type. */
+{MDO}{NameAnsi}{EmptySpace} {
+
+#if defined(DEBUG_STEPS)
+     cout << "Starting a markup declaration\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     /* The type of markup declaration can be: doctype, element or attlist. */
+     analyzer->handle(SgmlAnalyzer::markupStart, yytext + 2);
+     BEGIN(MarkDef);
+ }
+
+<MarkDef>{PEReference}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Parameter Entity Reference.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::per, yytext);
+ }
+
+<MarkDef>{SimpleNumber}{EmptySpace} {
+    // TODO: Handle a number in a markup def.
+#if defined(DEBUG_STEPS)
+     cout << "Number in markup.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+ }
+
+<MarkDef>{NameAnsi}{EmptySpace} {
+    // TODO: Handle a name in a markup def.
+#if defined(DEBUG_STEPS)
+     cout << "Name in markup.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+ }
+
+<MarkDef>{AttValue}{EmptySpace} {
+    // TODO: Handle an attribute value in a markup def.
+#if defined(DEBUG_STEPS)
+     cout << "Literal value in markup.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+ }
+
+<MarkDef>{DSO} {
+    // TODO: Handle a markup subset start.
+    BEGIN(DeclSubset);
+ }
+
+
+<DeclSubset>{MSC}{TAGC} {
+    // TODO: Handle a markup and subset end.
+    analyzer->handle(SgmlAnalyzer::itemEnd, NULL);
+    BEGIN(INITIAL);
+ }
+
+<DeclSubset>{DSC} {
+    // TODO: Handle a markup subset end.
+    analyzer->handle(SgmlAnalyzer::itemEnd, NULL);
+    BEGIN(MarkDef);
+ }
+
+<DeclSubset>[^\]]+ {
+    /* TODO: Handle a declaration subset data . */
+ }
+
+ /* 3.Logical structures.. */
+
+ /* 3.1 Start tag. */
+{STAGO}{NameAnsi}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Start tag.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::startTag, yytext+1);
+     BEGIN(Attribute);
+ }
+
+<Attribute>{NameAnsi}{Space}*={EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Attribute name assignment.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::attribute, yytext);
+     BEGIN(AttribValue);
+ }
+
+<Attribute>{NameAnsi}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Attribute name.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::name, yytext);
+ }
+
+<AttribValue>{AttValue}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Literal value.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::literal, yytext);
+     BEGIN(Attribute);
+ }
+
+<AttribValue>{NameAnsi}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+     cout << "Error: encountered non-quoted value in attrib assignment.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+     analyzer->handle(SgmlAnalyzer::nameToken, yytext);
+     BEGIN(Attribute);
+ }
+
+<Attribute,Tag>{TAGC} {
+    analyzer->handle(SgmlAnalyzer::itemEnd, NULL);
+    BEGIN(INITIAL);
+ }
+
+<Attribute,Tag>[/]{TAGC} {
+    analyzer->handle(SgmlAnalyzer::fastEndTag, NULL);
+    BEGIN(INITIAL);
+}
+
+
+<INITIAL,CDATA>{ETAGO}{NameAnsi}{EmptySpace} {
+#if defined(DEBUG_STEPS)
+    cout << "Found end tag.\n";
+     cout << "[" << yytext << "]\n";
+#endif
+
+     analyzer->handle((YYSTATE == CDATA) ? SgmlAnalyzer::cDataEnd : SgmlAnalyzer::endTag, yytext + 1);
+     BEGIN(Tag);
+ }
+
+<Attribute,AttribValue,Tag>{STAGO} {
+    /* TODO: Transport this error onto the driver analyser. */
+    cout << "Error: start tag within a tag.\n";
+    BEGIN(INITIAL);
+ }
+
+<Attribute,AttribValue,Tag>. {
+#if defined(DEBUG_STEPS)
+    cout << "Misc data in attr, attrValue, tag.\n";
+    cout << "[" << yytext << "]\n";
+#endif
+    // TODO: Find out who should be handling this case (and when it occurs).
+ }
+
+
+ /* Helping rules. */
+
+<MarkDef,Comment>. {
+#if defined(DEBUG_STEPS)
+    if (YYSTATE == MarkDef) {
+	cout << "Misc data in markup decl\n";
+    }
+    else {
+    cout << "Misc data in comment.\n";
+    }
+    cout << "[" << yytext << "]\n";
+#endif
+    // TODO: Handle the interns of a markup decl.
+ }
+
+
+ /* Miscellanous. */
+
+ /* abcd -- data characters */
+([^<&]|(<[^<&a-zA-Z!->?])|(&[^<&#a-zA-Z]))+|. {
+#if defined(DEBUG_STEPS)
+    cout << "pcData [" << yytext << "].\n";
+#endif
+    analyzer->handle(SgmlAnalyzer::pcDataChar, yytext);
+ }
+
+
+ /* &#60; -- numeric character reference */
+{CRO}{SimpleNumber}{EndReference}? {
+#if defined(DEBUG_STEPS)
+    cout << "numeric character reference [" << yytext << "].\n";
+#endif
+    // TODO: Handle this kind of data.
+ }
+
+ /* &#60xyz. -- syntax error */
+{CRO}{NmToken}{EndReference}? {
+    cout << "Error: bad char ref [" << yytext <<"].\n";
+    // TODO: Handle this kind of data.
+ }
+
+
+  /* &#SPACE; -- named character reference. Not supported. */
+{CRO}{NameAnsi}{EndReference}? {
+#if defined(DEBUG_STEPS)
+    cout << "named character reference [" << yytext << "].\n";
+#endif
+    // TODO: Handle this kind of data.
+ }
+
+
+  /* &amp; -- general entity reference */
+{Ampercent}{NameAnsi}{EndReference}? {
+#if defined(DEBUG_STEPS)
+    cout << "general entity reference [" << yytext << "].\n";
+#endif
+    // TODO: Handle this kind of data.
+ }
+
+
+%%

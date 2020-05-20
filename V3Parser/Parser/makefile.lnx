@@ -1,0 +1,67 @@
+
+PROJECT = HParser
+
+include $(AKRAPROJ)/geneMake.lnx
+
+#include fileList.common
+include hdParser.common
+
+#ADD_CFLAGS+= -DNO_XML_DUP
+CFLAGS+= -g
+# EXETARGET= $(OBJ_PATH)/tHtml$(EXE_SUFFIX)
+EXETARGET= $(OBJ_PATH)/hdParser$(EXE_SUFFIX)
+
+#BaseParser: tHtml
+#OBJS= $(BASEOBJS) main.o
+#tHtml: $(OBJ_PATH) $(OBJS)
+
+LSOBJS= $(BASEOBJS) landScope.o lsMain.o
+lsParser: $(OBJ_PATH) $(LSOBJS)
+	( cd $(OBJ_PATH) && \
+	 g++ -g -o $@ $(LSOBJS) \
+		 -L$(LIBDIR) $(LDFLAGS) $(LIBRARIES) \
+	)
+
+
+HDOBJS= $(BASEOBJS) homeDepot.o hdMain.o
+hdParser: $(OBJ_PATH) $(HDOBJS)
+	( cd $(OBJ_PATH) && \
+	 g++ -g -o $@ $(HDOBJS) \
+		 -L$(LIBDIR) $(LDFLAGS) $(LIBRARIES) \
+	)
+
+
+LIBDIR= $(OBJDEST)/lib/lnx_386
+LIBRARIES= -lHtml -lMarkLang -lpq
+
+$(EXETARGET): $(OBJ_PATH) $(OBJS)
+	( cd $(OBJ_PATH) && \
+	 g++ -g -o $@ $(OBJS) \
+		 -L$(LIBDIR) $(LDFLAGS) $(LIBRARIES) \
+	)
+
+.PHONY : all
+all: hdParser
+
+.PHONY : clean
+clean :
+	-@rm -rf $(OBJ_PATH)/*.o
+	-@rm -rf $(EXETARGET)
+
+.PHONY : binclean
+binclean :
+	$(RM) $(EXETARGET)
+
+.PHONY : realclean
+realclean : 
+	$(RMDIR) $(OBJ_PATH)
+	$(RM) $(EXETARGET)
+
+.PHONY : bin
+bin: 
+	$(RM) $(EXETARGET)
+	$(MAKE) $(EXETARGET)
+
+.PHONY : install
+install: 
+	$(CP) $(EXETARGET) $(HOME)/bin

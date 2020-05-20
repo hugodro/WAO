@@ -1,0 +1,37 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 1999 AkraLogic, Inc.
+#
+#------------------------------------------------------------------------------
+
+PROJECT = MarkLang/Wml
+
+include $(AKRAPROJ)/geneMake.osx
+
+include fileList.common
+
+CFLAGS+= -g
+SUBPROJECT= Wml
+LIBNAME= lib$(SUBPROJECT)$(SLIB_EXT)
+LIBTARGET = $(LIBDIR)/lib/$(ARCH)/$(PROJECT)$(LIB_DYN_SUFFIX)
+
+
+$(LIBNAME): $(LIBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) cru $@ $(LIBOBJS) && \
+	    $(RANLIB) $@ \
+	)
+
+.PHONY : all
+all : $(LIBNAME)
+
+.PHONY : clean
+clean :
+	-@rm -rf $(OBJDIR)/*.o
+	-@rm -rf $(LIBTARGET)
+
+
+.PHONY : lib
+lib :
+	cp $(OBJ_PATH)/$(LIBNAME) $(LIB_PATH)/$(LIBNAME)
+	$(RANLIB) $(LIB_PATH)/$(LIBNAME)
+

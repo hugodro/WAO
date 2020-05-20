@@ -1,0 +1,18 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 2000 Extenta, Inc.
+#
+#------------------------------------------------------------------------------
+
+all : src
+
+.PHONY : src
+src :
+	cd src && $(MAKE) -f makefile.lnx
+
+.PHONY : clean
+clean :
+	cd src && $(MAKE) -f makefile.lnx clean
+
+.PHONY : realclean
+realclean:
+	cd src && $(MAKE) -f makefile.lnx realclean

@@ -1,0 +1,56 @@
+zinkovy> telnet www.odci.gov 80
+Trying 198.81.129.99... Connected to www.odci.gov.
+Escape character is '^]'.
+GET af.html HTTP/1.0
+
+HTTP/1.0 404 Not Found
+Date: Saturday, 09-May-98 13:25:14 GMT
+Server: Open-Market-Secure-WebServer/2.0.5.RC0
+MIME-version: 1.0
+Security-Scheme: S-HTTP/1.1
+Content-type: text/html
+
+<TITLE>Not Found</TITLE><H1>Not Found</H1>
+ The requested object was not found on this server.Connection closed by foreign host.
+
+---------
+zinkovy> telnet www.odci.gov 80
+Trying 198.81.129.99... Connected to www.odci.gov.
+Escape character is '^]'.
+GET /cia/publications/factbook/us.html HTTP/1.0
+
+HTTP/1.0 200 OK
+Date: Saturday, 09-May-98 13:28:00 GMT
+Server: Open-Market-Secure-WebServer/2.0.5.RC0
+MIME-version: 1.0
+Security-Scheme: S-HTTP/1.1
+Accept-Ranges: bytes
+Content-length: 21429
+Last-modified: Friday, 20-Mar-98 17:14:24 GMT
+Content-type: text/html
+
+<HTML>
+...
+</HTML>
+Connection closed by foreign host.
+
+------------------
+zinkovy> telnet folio.point-net.com 80
+Trying 206.123.4.8... Connected to folio.point-net.com.
+Escape character is '^]'.
+GET /cgi-bin/foliocgi.exe/gratnet.nfo/query=*/doc/{t26810}/pageitems={body}?
+
+HTTP/1.0 200 OK
+Server: Netscape-Enterprise/2.0a
+Date: Fri, 04 Sep 1998 21:52:11 GMT
+Set-cookie: fweb20=223; path=/
+Content-type: text/html
+
+<!DOCTYPE HTML SYSTEM "html.dtd">
+<HTML><HEAD>
+<SCRIPT>
+...
+</BODY>
+</HTML>
+Connection closed by foreign host.
+

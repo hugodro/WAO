@@ -1,0 +1,284 @@
+#/**************************************************
+#* File: Makefile.
+#* Desc: Rules to make the Sgml/HtmlParser.
+#* Module: WAO : SgmlParser.
+#* Rev: 18 mars 1998 : REV 0 : Hugo DesRosiers : Creation.
+#**************************************************/
+
+PROJECT= HtmlParser
+
+include $(AKRAPROJ)/geneMake.lnx
+
+
+BASESRCS=sgml.lcc
+LIBSRCS= sgml.cpp xml.cpp sgFlexer.cpp \
+	sgmlAnalyzer.cpp htmlAnalyzer.cpp \
+	dtdDefinition.cpp htmlDTD.cpp \
+	sgmlDoc.cpp htmlDoc.cpp \
+	sgmlElement.cpp htmlElement.cpp bodyElements.cpp \
+	lists.cpp elementList.cpp \
+	sgElementDef.cpp htElementDef.cpp \
+	topElements.cpp bblockElements.cpp titleElements.cpp nonStdElements.cpp \
+	sformElements.cpp btextElements.cpp \
+	sgmlRenderer.cpp
+TSTSRCS= main.cpp renderJava.cpp renderHtml.cpp jstRender.cpp
+WMLSRCS= xml.cpp testWml.cpp xmlLexer.cpp \
+	wmlAnalyzer.cpp wmlDTD.cpp wmlDoc.cpp \
+	wTopElements.cpp wmlElement.cpp \
+	wElementDef.cpp container.cpp
+
+LIBOBJS=$(LIBSRCS:.cpp=.o)
+TSTOBJS= $(TSTSRCS:.cpp=.o)
+COREOBJS= sgmlAnalyzer.o sgmlElement.o elementList.o lists.o \
+	sgmlDoc.o dtdDefinition.o sgElementDef.o
+WMLOBJS= $(WMLSRCS:.cpp=.o) $(COREOBJS)
+
+
+LIBPATH= -L. -L$(PLZENLIB)
+LIBS= -lhtmlp -ljstmgr -lPlzen -ldl -lpthread
+WMLLIBS= -lfl
+
+# Flags for compilation: -pg (gprof) -DDEBUG_LEX.
+#CFLAGS= -g -DUSE_SGML
+CFLAGS= -g -DUSE_XML
+YACCFLAGS= -dyv
+LEXFLAGS= -B+
+
+all: phtml
+
+
+tWml: $(WMLOBJS) libhtmlp.a
+	( cd $(OBJ_PATH) && \
+	    $(CPP)  $(CFLAGS) -o $@ $(WMLOBJS) $(LIBPATH) $(WMLLIBS) \
+	)
+
+libhtmlp.a: $(LIBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) cru $@ $(LIBOBJS) && \
+	    $(RANLIB) $@ \
+	)
+
+
+phtml: $(TSTOBJS) libhtmlp.a
+	( cd $(OBJ_PATH) && \
+	    $(CPP)  $(CFLAGS) -o $@ $(TSTOBJS) $(LIBPATH) $(LIBS) \
+	)
+
+
+install: libhtmlp.a
+	mv $< lib/lnx_386
+	  
+
+src/sgml.cpp: src/sgml.lcc
+	$(LEX) $(LEXFLAGS) -o$@ $<
+
+src/xml.cpp: src/xml.lcc
+	$(LEX) -Id+ -o$@ $<
+
+cleanbin: $(OBJS)
+	rm $(OBJS)
+
+
+depend: $(LIBSRCS) $(TSTSRCS)
+	( \
+	    makedepend $(INC) -- $(CFLAGS) -- -fmakefile.lnx src/*.cpp \
+	)
+
+# DO NOT DELETE
+
+bblockElements.o: inc/bblockElements.h inc/htmlElement.h inc/htmlDTD.h
+bblockElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+bblockElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+bblockElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+bodyElements.o: inc/bodyElements.h inc/htmlElement.h inc/htmlDTD.h
+bodyElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+bodyElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+bodyElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+btextElements.o: inc/btextElements.h inc/htmlElement.h inc/htmlDTD.h
+btextElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+btextElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+btextElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+dtdDefinition.o: inc/dtdDefinition.h
+dtdDefinition.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+elementList.o: inc/elementList.h inc/lists.h
+elementList.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+elementList.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htElementDef.o: /usr/include/ctype.h /usr/include/features.h
+htElementDef.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+htElementDef.o: /usr/include/bits/types.h /usr/include/endian.h
+htElementDef.o: /usr/include/bits/endian.h inc/htElementDef.h
+htElementDef.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+htElementDef.o: inc/htmlDTD.h
+htElementDef.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htElementDef.o: inc/dtdDefinition.h inc/sgElementDef.h
+htmlAnalyzer.o: /usr/include/stdio.h /usr/include/features.h
+htmlAnalyzer.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+htmlAnalyzer.o: /usr/include/bits/types.h /usr/include/libio.h
+htmlAnalyzer.o: /usr/include/_G_config.h /usr/include/bits/stdio_lim.h
+htmlAnalyzer.o: /usr/include/ctype.h /usr/include/endian.h
+htmlAnalyzer.o: /usr/include/bits/endian.h inc/htmlDTD.h
+htmlAnalyzer.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+htmlAnalyzer.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htmlAnalyzer.o: inc/dtdDefinition.h inc/htmlDoc.h inc/sgmlDoc.h
+htmlAnalyzer.o: inc/htmlAnalyzer.h inc/sgmlAnalyzer.h
+htmlDTD.o: inc/htElements.h inc/topElements.h inc/htmlElement.h
+htmlDTD.o: inc/htmlDTD.h
+htmlDTD.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+htmlDTD.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htmlDTD.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+htmlDTD.o: inc/titleElements.h inc/bodyElements.h inc/bblockElements.h
+htmlDTD.o: inc/btextElements.h inc/sformElements.h inc/nonStdElements.h
+htmlDTD.o: inc/htmlDoc.h inc/htElementDef.h inc/sgElementDef.h
+htmlDoc.o: inc/htElementDef.h
+htmlDoc.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+htmlDoc.o: inc/htmlDTD.h
+htmlDoc.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htmlDoc.o: inc/dtdDefinition.h inc/sgElementDef.h inc/htElements.h
+htmlDoc.o: inc/topElements.h inc/htmlElement.h inc/sgmlElement.h
+htmlDoc.o: inc/sgmlDoc.h inc/titleElements.h inc/bodyElements.h
+htmlDoc.o: inc/bblockElements.h inc/btextElements.h inc/sformElements.h
+htmlDoc.o: inc/nonStdElements.h inc/htmlDoc.h
+htmlElement.o: inc/htElementDef.h
+htmlElement.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+htmlElement.o: inc/htmlDTD.h
+htmlElement.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+htmlElement.o: inc/dtdDefinition.h inc/sgElementDef.h inc/elementList.h
+htmlElement.o: inc/lists.h inc/htmlElement.h inc/sgmlElement.h
+htmlElement.o: inc/sgmlDoc.h
+jstRender.o: /usr/include/ctype.h /usr/include/features.h
+jstRender.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+jstRender.o: /usr/include/bits/types.h /usr/include/endian.h
+jstRender.o: /usr/include/bits/endian.h /usr/include/stdio.h
+jstRender.o: /usr/include/libio.h /usr/include/_G_config.h
+jstRender.o: /usr/include/bits/stdio_lim.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/JstManager/fileArchiver.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/JstManager/archiver.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jmachine.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkMachine.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/machineSupport.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/cDefinitions.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/valueTypes.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/debugInfo.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classFile.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/constantPool.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classFileObject.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classAttributes.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/rawThreads.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/poolManager.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jvcup.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/runOptions.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/filePath.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jmachine.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jvInstance.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/stacks.h
+jstRender.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/machineSupport.h
+jstRender.o: inc/htmlElement.h inc/htmlDTD.h inc/dtdDefinition.h
+jstRender.o: inc/sgmlElement.h inc/sgmlDoc.h inc/htmlDoc.h
+jstRender.o: inc/elementList.h inc/lists.h inc/nonStdElements.h
+jstRender.o: inc/topElements.h inc/sgElementDef.h inc/jstRender.h
+jstRender.o: inc/sgmlRenderer.h
+lists.o: /usr/include/stdio.h /usr/include/features.h
+lists.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+lists.o: /usr/include/bits/types.h /usr/include/libio.h
+lists.o: /usr/include/_G_config.h /usr/include/bits/stdio_lim.h
+lists.o: /usr/include/memory.h /usr/include/string.h inc/lists.h
+lists.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+lists.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+main.o: /usr/include/stdlib.h /usr/include/features.h
+main.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+main.o: /usr/include/sys/types.h /usr/include/bits/types.h
+main.o: /usr/include/time.h /usr/include/endian.h
+main.o: /usr/include/bits/endian.h /usr/include/sys/select.h
+main.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+main.o: /usr/include/sys/sysmacros.h /usr/include/alloca.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jvcup.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/runOptions.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/filePath.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/cDefinitions.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/jmachine.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classFile.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/constantPool.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classFileObject.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/classAttributes.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/debugInfo.h
+main.o: inc/htmlAnalyzer.h inc/sgmlAnalyzer.h inc/htmlDTD.h
+main.o: inc/dtdDefinition.h inc/htmlDoc.h inc/sgmlDoc.h inc/renderJava.h
+main.o: inc/sgmlRenderer.h inc/renderHtml.h inc/jstRender.h
+main.o: /home/hugo/AkraLog/Projets/Plzen/include/RunTime/stringSupport.h
+nonStdElements.o: inc/nonStdElements.h inc/htmlElement.h inc/htmlDTD.h
+nonStdElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+nonStdElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+nonStdElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+renderHtml.o: inc/htmlElement.h inc/htmlDTD.h
+renderHtml.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+renderHtml.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+renderHtml.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+renderHtml.o: inc/elementList.h inc/lists.h inc/htmlDoc.h
+renderHtml.o: inc/nonStdElements.h inc/topElements.h inc/sgElementDef.h
+renderHtml.o: inc/renderHtml.h inc/sgmlRenderer.h
+renderJava.o: /usr/include/ctype.h /usr/include/features.h
+renderJava.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+renderJava.o: /usr/include/bits/types.h /usr/include/endian.h
+renderJava.o: /usr/include/bits/endian.h /usr/include/stdio.h
+renderJava.o: /usr/include/libio.h /usr/include/_G_config.h
+renderJava.o: /usr/include/bits/stdio_lim.h inc/htmlElement.h
+renderJava.o: inc/htmlDTD.h
+renderJava.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+renderJava.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+renderJava.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+renderJava.o: inc/htmlDoc.h inc/elementList.h inc/lists.h
+renderJava.o: inc/nonStdElements.h inc/topElements.h inc/sgElementDef.h
+renderJava.o: inc/renderJava.h inc/sgmlRenderer.h
+sformElements.o: inc/sformElements.h inc/htmlElement.h inc/htmlDTD.h
+sformElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sformElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+sformElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+sgElementDef.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+sgElementDef.o: /usr/include/ctype.h /usr/include/features.h
+sgElementDef.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+sgElementDef.o: /usr/include/bits/types.h /usr/include/endian.h
+sgElementDef.o: /usr/include/bits/endian.h inc/sgElementDef.h
+sgElementDef.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgFlexer.o: inc/sgFlexer.h /usr/include/FlexLexer.h
+sgml.o: /usr/include/FlexLexer.h /usr/include/ctype.h
+sgml.o: /usr/include/features.h /usr/include/sys/cdefs.h
+sgml.o: /usr/include/gnu/stubs.h /usr/include/bits/types.h
+sgml.o: /usr/include/endian.h /usr/include/bits/endian.h
+sgml.o: /usr/include/stdio.h /usr/include/libio.h
+sgml.o: /usr/include/_G_config.h /usr/include/bits/stdio_lim.h
+sgml.o: inc/sgmlAnalyzer.h
+sgml.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgml.o: inc/sgFlexer.h /usr/include/stdlib.h /usr/include/sys/types.h
+sgml.o: /usr/include/time.h /usr/include/sys/select.h
+sgml.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+sgml.o: /usr/include/sys/sysmacros.h /usr/include/alloca.h
+sgmlAnalyzer.o: inc/sgFlexer.h /usr/include/FlexLexer.h
+sgmlAnalyzer.o: inc/dtdDefinition.h
+sgmlAnalyzer.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgmlAnalyzer.o: inc/sgmlDoc.h inc/sgmlAnalyzer.h
+sgmlDoc.o: /usr/include/time.h /usr/include/bits/types.h
+sgmlDoc.o: /usr/include/features.h /usr/include/sys/cdefs.h
+sgmlDoc.o: /usr/include/gnu/stubs.h inc/sgmlDoc.h
+sgmlDoc.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgmlElement.o: inc/elementList.h inc/lists.h
+sgmlElement.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgmlElement.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+sgmlElement.o: inc/sgElementDef.h inc/sgmlElement.h
+sgmlRenderer.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+sgmlRenderer.o: inc/sgmlElement.h
+sgmlRenderer.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+sgmlRenderer.o: inc/elementList.h inc/lists.h inc/sgmlRenderer.h
+titleElements.o: inc/titleElements.h inc/htmlElement.h inc/htmlDTD.h
+titleElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+titleElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+titleElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+topElements.o: inc/elementList.h inc/lists.h
+topElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/AkObject.h
+topElements.o: /home/hugo/AkraLog/Projets/Plzen/include/akra/portableDefs.h
+topElements.o: inc/nonStdElements.h inc/htmlElement.h inc/htmlDTD.h
+topElements.o: inc/dtdDefinition.h inc/sgmlElement.h inc/sgmlDoc.h
+topElements.o: inc/topElements.h

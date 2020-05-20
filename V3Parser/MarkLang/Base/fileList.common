@@ -1,0 +1,20 @@
+BASESRCS=sgml.lcc
+LIBSRCS= analyzer.cpp \
+  doc.cpp \
+  dtdDefinition.cpp \
+  element.cpp \
+  elementDef.cpp \
+  elementList.cpp \
+  lists.cpp \
+  renderer.cpp \
+  sgAnalyzer.cpp \
+  sgElementDef.cpp \
+  sgLexer.cpp \
+  sgLexParser.cpp \
+  xAnalyzer.cpp \
+  xElementDef.cpp \
+  xLexer.cpp \
+  xLexParser.cpp
+
+LIBOBJS=$(LIBSRCS:.cpp=.o)
+

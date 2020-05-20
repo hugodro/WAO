@@ -1,0 +1,298 @@
+<HTML>
+<HEAD>
+  <SCRIPT language=javascript>
+<!--
+
+function OnTopWindow_list(window_href)
+{
+TopWindow = window.open(window_href,
+                        "Figures",
+                        "toolbar=no,width=700,height=500,directories=no,status=no,scrollbars=yes,resize=no,menubar=yes")
+
+}
+
+function OnTopWindow_fig11(window_href)
+{
+TopWindow = window.open(window_href,
+                        "Figures",
+                        "toolbar=no,width=250,height=315,directories=no,status=no,scrollbars=yes,resize=no,menubar=no")
+
+}
+
+//  -->
+</SCRIPT>
+  <TITLE>Gamasutra - Optimizing Direct3D Applications for Hardware Acceleration
+  [12.12.97] - Minimizing SetRenderState() Calls</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffcc" TEXT="#000000" LINK="800000" VLINK="808080">
+<TABLE CELLSPACING="0" CELLPADDING="4" WIDTH="615">
+  <TR>
+    <TD width=135>
+      <CENTER>
+	<A href="../../../home.htm"><IMG SRC="../../../db_area/images/layout/3logo_eye.gif"
+	    WIDTH="120" HEIGHT="69" BORDER="0"></A>
+      </CENTER>
+    </TD>
+    <TD width=480>
+      <CENTER>
+	<!-- Banner Ad tag
+	follows -->
+	<A HREF="http://sally.songline.com:80/@KLJ0ZS19Vqtw7vsMYEFvwWzJwWLv9m2Cr0dsk4dtT3ZhaicrZVhJblRnpya3bGLZ42hZ44DAa4LXMNdiRyBSO0dsk4dtT3ZhaicQw49hrhZjbn2hP49jb4-fw4zs?"><IMG SRC="http://sally.songline.com:80/@GbT39T1wTiRtxk70Y-Yvk4Voam2yaWhvbiDSbGhlk0DWZXIupW9Zk450R0s3dWzt42hZ42hvQX-t2yByw8aCQyLSbGhlk0DWZXIuUG-NZpc4w4zVZTVNw4VjXW-sbGzt?" WIDTH=468 HEIGHT=60 ALT="GDC Hardcore" BORDER=0></A>
+      </CENTER>
+    </TD>
+  </TR>
+  <TR VALIGN="Bottom">
+    <TD>
+      <IMG WIDTH="135" HEIGHT="37" BORDER="0" VSPACE="0" ISMAP SRC="../../../db_area/images/layout/3sh_feat_programming.gif"
+	  USEMAP="#3shfeatprog"> <MAP NAME="3shfeatprog">
+	<AREA SHAPE="RECT" HREF="../" COORDS="0,18,134,36">
+	<AREA SHAPE="RECT" HREF="../../../features/" COORDS="0,0,134,18">
+      </MAP>
+    </TD>
+    <TD>
+      <CENTER>
+	<IMG WIDTH="422" HEIGHT="20" BORDER="0" ISMAP SRC="../../../db_area/images/layout/3tbar.gif"
+	    USEMAP="#3tbar"> <MAP NAME="3tbar">
+	  <AREA SHAPE="RECT" HREF="../../../feedback/" COORDS="338,0,415,19">
+	  <AREA SHAPE="RECT" HREF="../../../aboutus/" COORDS="259,0,337,19">
+	  <AREA SHAPE="RECT" HREF="../../../help/" COORDS="216,0,258,19">
+	  <AREA SHAPE="RECT" HREF="../../../store/" COORDS="162,0,215,19">
+	  <AREA SHAPE="RECT" HREF="../../../search/" COORDS="102,0,161,19">
+	  <AREA SHAPE="RECT" HREF="../../../join/" COORDS="60,0,101,20">
+	  <AREA SHAPE="RECT" HREF="../../../home.htm" COORDS="7,0,59,21">
+	</MAP>
+	<BR>
+	<IMG WIDTH="365" HEIGHT="42" BORDER="0" ISMAP SRC="../../../db_area/images/layout/3h_navbar.gif"
+	    USEMAP="#3hnavbar"> <MAP NAME="3hnavbar">
+	  <AREA SHAPE="RECT" HREF="../../../education/" COORDS="213,23,282,38">
+	  <AREA SHAPE="RECT" HREF="../../../directories/" COORDS="125,23,205,38">
+	  <AREA SHAPE="RECT" HREF="../../../tools/" COORDS="77,22,117,38">
+	  <AREA SHAPE="RECT" HREF="../../../newswire/" COORDS="264,4,339,22">
+	  <AREA SHAPE="RECT" HREF="../../../jobsearch/" COORDS="180,5,255,22">
+	  <AREA SHAPE="RECT" HREF="../../../connection/" COORDS="93,5,173,23">
+	  <AREA SHAPE="RECT" HREF="../../../features/" COORDS="20,4,85,22">
+	</MAP>
+      </CENTER>
+    </TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=2>
+      <IMG SRC="../../../db_area/images/layout/3h_dotline.gif" WIDTH="620" HEIGHT="3">
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <P ALIGN=Left>
+      <FONT FACE = "Arial, Helvetica" color="0000A0"><B>Optimizing Direct3D
+      Applications </B></FONT>
+    </TD>
+    <TD>
+      <CENTER>
+	<FONT face=arial, helvetica size=+1><B>Minimizing
+	<CODE>SetRenderState()</CODE> Calls<BR>
+	</B></FONT>
+      </CENTER>
+    </TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=2>
+      <IMG SRC="../../../db_area/images/layout/3h_dotline.gif" WIDTH="620" HEIGHT="3">
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    </TD>
+    <TD>
+    </TD>
+  </TR>
+  <TR VALIGN="top">
+    <TD width=135>
+      <!-- insert byline here -->
+      <TABLE CELLPADDING="2" bgcolor="#000000">
+	<TR>
+	  <TD>
+	    <FONT FACE="arial,helvetica" size=-1 color="#CCCC66"><B>Optimizing Direct3D
+	    Applications </B></FONT>
+	  </TD>
+	</TR>
+	<TR>
+	  <TD BGCOLOR="#FFCC66">
+	    &nbsp;<IMG SRC="../../../db_area/images/layout/3body_arrow_sm_right_ffcc66.gif"
+		WIDTH="6" HEIGHT="9" BORDER="0">
+	    <FONT face=arial,helvetica size=-1><B><A HREF="optimizing_direct3d_01.htm">Page
+	    1</A></B></FONT><BR>
+	    &nbsp;
+	    <IMG SRC="../../../db_area/images/layout/3body_arrow_sm_right_ffcc66.gif"
+		WIDTH="6" HEIGHT="9" BORDER="0"> <FONT face=arial,helvetica size=-1><B>Page
+	    2</B></FONT><BR>
+	    &nbsp;
+	    &nbsp;<IMG SRC="../../../db_area/images/layout/3body_arrow_sm_right_ffcc66.gif"
+		WIDTH="6" HEIGHT="9" BORDER="0">
+	    <FONT face=arial,helvetica size=-1><B><A HREF="optimizing_direct3d_03.htm">Page
+	    3</A></B></FONT><BR>
+	    &nbsp; &nbsp;
+	    <IMG SRC="../../../db_area/images/layout/3body_arrow_sm_right_ffcc66.gif"
+		WIDTH="6" HEIGHT="9" BORDER="0">
+	    <FONT face=arial,helvetica size=-1><B><A HREF="optimizing_direct3d_04.htm">Page
+	    4</A></B></FONT><BR>
+	    &nbsp; &nbsp;
+	    &nbsp;<IMG SRC="../../../db_area/images/layout/3body_arrow_sm_right_ffcc66.gif"
+		WIDTH="6" HEIGHT="9" BORDER="0">
+	    <FONT face=arial,helvetica size=-1><B><A HREF="optimizing_direct3d_05.htm">Page
+	    5</A></B></FONT>
+	  </TD>
+	</TR>
+      </TABLE>
+    </TD>
+    <TD width=485>
+      <!-- insert body text here -->
+      <FONT FACE="arial,helvetica"> The single biggest optimization that can be
+      made is minimization of SetRenderState() calls. One way to design an application
+      or engine to minimize these calls is to use a material abstraction where
+      each material is an associated set of render states. For each frame, an
+      application would render all of the polygons of a given material (set of
+      render states) and then move on to the next material without revisiting any
+      materials. The engine could even traverse the materials such that the minimum
+      number of SetRenderState() calls is made, though this might be going a bit
+      overboard. Of course, it wouldn't be quite this simple with non-z-buffered
+      applications. Additionally, alpha-blended polygons should be deferred to
+      the end of the frame and depth-sorted. Such an architecture will go a long
+      way toward eliminating redundant SetRenderState() calls. <BR>
+      <BR>
+      Many graphics engines were not originally architected with any kind of material
+      abstraction or even hardware acceleration in mind. Such applications can
+      still cut out redundant SetRenderState() calls by maintaining the current
+      state of all of the Direct3D render states and only changing a given render
+      state when the hardware is not already in the right state. ATI has taken
+      this approach when converting a variety of Direct3D applications to its
+      proprietary API, which is very Direct3D-like, and we have seen around a 20%
+      speed boost over the Direct3D versions (even in cases where we have to copy
+      and convert data from D3DTLVERTEX structures to our ATI specific structures).
+      Much of this speed boost is due to the elimination of redundant SetRenderState()
+      calls, but some of it is attributable to being "closer to the metal." In
+      most cases, the only render state that will change on a transition from one
+      material to another is the current texture. That is, materials will, in most
+      cases, map to textures. <BR>
+      <BR>
+      Batching polygons of a common texture has many performance benefits. It
+      eliminates call overhead, minimizes PCI bus traffic, and perhaps most
+      importantly, batching polygons with common textures minimizes texel cache
+      thrashing. Newer graphics accelerators come with several kilobytes of texel
+      cache on chip. In order to keep costs low, these texel caches do not snoop
+      the PCI bus. That is, without PCI bus snooping these caches may contain data
+      this is out of sync with the actual video memory addresses that are cached.
+      As a result, switching textures may result in a complete flush of the texture
+      cache, while rendering polygons of a common texture in a batch will dramatically
+      increase <I>inter</I>-texture texel cache hits. <BR>
+      <BR>
+      Many developers either ignore the redundant render state issue or assume
+      that the driver or hardware will check for redundancy. Games must not rely
+      on drivers or accelerators to check for <CODE>SetRenderState()</CODE> redundancy.
+      The game has the information to best optimize away any redundant
+      <CODE>SetRenderState() </CODE>calls. Pushing this responsibility downward
+      would be far less efficient than keeping it at the application level. <BR>
+      <BR>
+      In order to illustrate the performance falloff due to the addition of
+      <CODE>SetRenderState() </CODE>calls to a render loop, I have created a simple
+      Direct3D application which renders and profiles five different scenes. The
+      code for this application was modified from the Microsoft flip3D sample
+      application and is available as a <A HREF="opt-app.zip">download</A> from
+      Gamasutra. The sample application renders two quads on the screen for each
+      scene. Each quad is rendered as a D3DPT_TRIANGLESTRIP of four vertices. One
+      of the quads is screen aligned, while the other is somewhat oblique to the
+      screen. See
+      <A href="JAVASCRIPT: OnTopWindow_list('Figure_01.htm')" onMouseOver="top.window.status='Click to see Listing 1'; return true">[Figure
+      1]</A> where the two quads rendered in test scenes.. <BR>
+      <BR>
+      Scene 1 consists of these two quads rendered without texture maps and with
+      a Gouraud shaded gradation of color from top to bottom. The function used
+      to render test Scene1 is shown in
+      <A href="JAVASCRIPT: OnTopWindow_list('listing_01.htm')" onMouseOver="top.window.status='Click to see Listing 1'; return true">Listing
+      1</A>. <BR>
+      <BR>
+      Scene 2 &nbsp;texture maps both quads with a 256x256 texture while Scene
+      3 texture maps both quads with a 128x128 texture. Perspective correction
+      and <CODE>D3DTBLEND_MODULATE </CODE>texture blending are on. As you would
+      expect, the render state for the current texture is set once and there are
+      no <CODE>SetRenderState() </CODE>calls within the loop. Scene 4 texture maps
+      the two quads with two different textures as shown in Figure 1 above. Naturally,
+      there are two <CODE>SetRenderState() </CODE>calls in the loop. Scene 5 renders
+      the same image as Scene 4 but there are redundant
+      <CODE>SetRenderState()</CODE>calls introduced into the loop as shown in
+      <A href="JAVASCRIPT: OnTopWindow_list('listing_02.htm')" onMouseOver="top.window.status='Click to see Listing 1'; return true">Listing
+      2</A> to show performance degradation due to redundant
+      <CODE>SetRenderState()</CODE> calls. <BR>
+      <BR>
+      I have measured the performance of a variety of current 3D graphics cards
+      using the test program with times_to_render set to 2500, resulting in 10,000
+      triangles per scene. The results for three typical cards are shown in Figure
+      2 below. For each card, the time to render the 10,000 triangles was measured
+      in milliseconds. This number was then converted to triangles per millisecond
+      and normalized (divided by the Scene 1 score for the given card). This
+      normalization was done so that the <I>fall-off</I> in performance is made
+      clear without obscuring the issue with absolute performance comparisons.</FONT>
+      <BR>
+      <BR>
+      <CENTER>
+	<TABLE WIDTH="210" BORDER=0 CELLSPACING=2 CELLPADDING=4 bgcolor="000000">
+	  <TR>
+	    <TD ALIGN="CENTER">
+	      <IMG SRC="../../../db_area/images/features/programming/120597/Figure_02.JPG"
+		  WIDTH="450" HEIGHT="325">
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD align=center>
+	      <FONT COLOR="FFFFFF" FACE="arial,helvetica" size=-1><I><B><I>Figure 2 -
+	      </I>Triangle per millisecond fall-off for Scenes 1 through 5 for a variety
+	      of 3D accelerators. The data was gathered with the application developed
+	      for this article on a 300MHz Pentium II.</B></I></FONT>
+	    </TD>
+	  </TR>
+	</TABLE>
+      </CENTER>
+      <P>
+      <FONT face=arial,helvetica> Both Card 1 and Card 2 take a minor hit for turning
+      on texture mapping (Scene 1 to Scene 2), while Card 3 takes a significant
+      performance hit. Changing the size of the texture used in this limited test
+      scenario (Scene 2 to Scene3) does not affect performance on any of the cards.
+      Adding a <CODE>SetRenderState()</CODE> call to each iteration of the loop
+      to change between two textures (Scene 3 to Scene 4) is a performance penalty
+      on all three cards, particularly Card 2. Adding the redundant
+      <CODE>SetRenderState() </CODE>calls as shown in Listing 2 degrades performance
+      further still.<BR>
+      <BR>
+      I encourage developers interested in this issue to download the source for
+      this test application and experiment with it. I think it's a good idea to
+      do this kind of profiling of Direct3D performance and
+      <CODE>SetRenderState()</CODE> tracking in a developer's application as well.
+      Intel is also devoting time and resources to this issue and the Graphics
+      Toolkit in their recently released IPEAK family<FONT size=-1>
+      <A HREF="http://developer.intel.com/design/ipeak">[view site]</A></FONT>
+      of platform performance and integration tools is intended to help developers
+      with just this sort of workload and scene analysis.<BR>
+      <BR>
+      It should be pointed out that <CODE>SetRenderState()</CODE> calls are effectively
+      3D operations that cause communication with the hardware in 3D mode. As a
+      result, <DFN>SetRenderState() </DFN>calls should be made in 3D mode (within
+      a <CODE>BeginScene() - EndScene()</CODE> block) to prevent the hardware from
+      having to switch from 2D to 3D and back again when the SetRenderState() is
+      executed. In the next section, 2D and 3D modes will be discussed further.<BR>
+      <BR>
+      </FONT>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+    </TD>
+    <TD align=right>
+      <FONT face=arial,helvetica size=-1><B><A HREF="optimizing_direct3d_03.htm">2D
+      and 3D Modes: Page 3</A></B></FONT>
+      <A HREF="optimizing_direct3d_03.htm"><IMG SRC="../../../db_area/images/layout/3body_arrow_next.gif"
+	  WIDTH="30" HEIGHT="15" BORDER="0" ALT="Next Page"></A>
+      <P>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+</BODY></HTML>

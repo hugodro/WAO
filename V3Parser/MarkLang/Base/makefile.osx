@@ -1,0 +1,48 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 1999 AkraLogic, Inc.
+#
+#------------------------------------------------------------------------------
+
+
+PROJECT = MarkLang
+
+include $(AKRAPROJ)/geneMake.osx
+
+include fileList.common
+
+#ADD_CFLAGS+= -DNO_XML_DUP
+CFLAGS+= -g
+LIBNAME= lib$(PROJECT)$(SLIB_EXT)
+LIBTARGET = $(LIBDIR)/lib/$(ARCH)/$(PROJECT)$(LIB_DYN_SUFFIX)
+
+$(LIBNAME): $(LIBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) cru $@ $(LIBOBJS) && \
+	    $(RANLIB) $@ \
+	)
+
+.PHONY : all
+all: $(LIBNAME)
+
+.PHONY : clean
+clean :
+	-@rm -rf $(OBJ_PATH)/*.o
+	-@rm -rf $(OBJ_PATH)/$(LIBNAME)
+
+.PHONY : binclean
+binclean :
+	$(RM) $(EXETARGET)
+
+
+xLexParser.cpp: xLexParser.l
+	flex -Id+ -oxLexParser.cpp xLexParser.l
+
+sgLexParser.cpp: sgLexParser.l
+	flex -Id+ -osgLexParser.cpp sgLexParser.l
+
+
+.PHONY : lib
+lib :
+	cp $(OBJ_PATH)/$(LIBNAME) $(LIB_PATH)/$(LIBNAME)
+	$(RANLIB) $(LIB_PATH)/$(LIBNAME)
+

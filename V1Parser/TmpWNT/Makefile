@@ -1,0 +1,69 @@
+#/**************************************************
+#* File: Makefile.
+#* Desc: Rules to make the Sgml/HtmlParser.
+#* Module: WAO : SgmlParser.
+#* Rev: 18 mars 1998 : REV 0 : Hugo DesRosiers : Creation.
+#**************************************************/
+
+AKRAHOME= /Users/hugo/AkraLog/Projets
+PLZENHOME= $(AKRAHOME)/Plzen
+PROJECT= HtmlParser
+ARCHITECTURE= next_i386
+
+ARCHPATH= ../bins
+VPATH= $(ARCHPATH)
+
+
+
+SRCS= main.cc sgml.lcc sgml.cc sgFlexer.cc \
+	sgmlAnalyzer.cc htmlAnalyzer.cc \
+	dtdDefinition.cc htmlDTD.cc \
+	sgmlDoc.cc htmlDoc.cc \
+	sgmlElement.cc htmlElement.cc bodyElements.cc \
+	lists.cc elementList.cc \
+	sgElementDef.cc htElementDef.cc \
+	topElements.cc bblockElements.cc titleElements.cc nonStdElements.cc \
+	sformElements.cc btextElements.cc \
+	sgmlRenderer.cc renderJava.cc renderHtml.cc
+
+OBJS= main.o sgml.o sgFlexer.o \
+	sgmlAnalyzer.o htmlAnalyzer.o \
+	dtdDefinition.o htmlDTD.o \
+	sgmlDoc.o htmlDoc.o \
+	sgmlElement.o htmlElement.o bodyElements.o \
+	lists.o elementList.o \
+	sgElementDef.o htElementDef.o \
+	topElements.o bblockElements.o titleElements.o nonStdElements.o \
+	sformElements.o btextElements.o \
+	sgmlRenderer.o renderJava.o renderHtml.o
+
+
+LIBS= -lg++
+
+INC= -I$(AKRAHOME) -I.. -I$(AKRAHOME)/Plzen -I/usr/local/include
+
+CC= cc
+# Flags for compilation: -pg (gprof) -DDEBUG_LEX.
+CFLAGS= -g 
+YACC= bison
+YACCFLAGS= -dyv
+LEX= flex
+LEXFLAGS= -B+
+
+.SUFFIXES: .cc .lcc
+all: phtml
+
+phtml: $(OBJS)
+	$(CC)  $(CFLAGS) -o  $(ARCHPATH)/$@ $(OBJS) $(EXTERNOBJS) $(LIBS)
+
+.c.o:
+	$(CC) $(INC) $(CFLAGS) -o $(ARCHPATH)/$@ -c  $<
+
+.cc.o:
+	$(CC) $(INC) $(CFLAGS) -o $(ARCHPATH)/$@ -c  $<
+
+sgml.cc: sgml.lcc
+	$(LEX) $(LEXFLAGS) -o$@ sgml.lcc
+
+cleanbin: $(OBJS)
+	rm $(OBJS)

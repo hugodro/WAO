@@ -1,0 +1,535 @@
+<HTML> 
+<HEAD>
+<TITLE>12/17/99 BW Online--Paul Allen Adds Another Circuit to His Wired World</TITLE>
+<SCRIPT>
+function setFocus()
+{
+	doIt = true;
+	if (navigator.appName.indexOf("Microsoft") != -1)
+	{
+		if (navigator.appVersion.indexOf("3") != -1)
+		{
+			// if it is IE3, don't do anything.
+			doIt = false;
+		}
+	}
+	if (doIt)
+	{
+	focus();
+	}
+}
+</SCRIPT>
+
+<LINK REL="stylesheet" type="text/css" HREF="/styles/bwdaily/daily_briefing_story.css">
+
+<SCRIPT language="javascript" type="text/javascript">
+<!--
+
+// default search area
+defaultArea = "daily6";
+
+function getUrlSubstring (startsWith, endsWith) {
+startPosition = locationString.indexOf(startsWith)
+if (startPosition != -1) {
+endPosition = locationString.indexOf(endsWith, startPosition)
+returnString = locationString.substring(startPosition, endPosition)
+} else { 
+returnString = ""
+}
+return returnString
+}
+function writeFrameset(locationString, macNumber) {
+if (macNumber != "") {
+macNumber = "/" + macNumber
+}
+ 
+document.clear()
+document.open()
+document.write ('<FRAMESET ROWS="31,*" FRAMEBORDER="NO" BORDER="0" FRAMESPACING="0" >')
+document.write ('<FRAME SRC="' + macNumber + '/roof.htm" scrolling="no" MARGINWIDTH="0" MARGINHEIGHT="0">')
+document.write ('<FRAMESET COLS="126,*" FRAMEBORDER="NO" FRAMESPACING="0" BORDER="0">')
+document.write ('<FRAMESET ROWS="35,78,*,94" FRAMEBORDER="NO"  FRAMESPACING="0" BORDER="0">')
+document.write ('<FRAME SRC="' + macNumber + '/popup.htm" scrolling="no" MARGINWIDTH="0" MARGINHEIGHT="0">')
+document.write ('<FRAME SRC="' + macNumber + '/bwdaily/frame/title.htm" scrolling="no" MARGINWIDTH="0" MARGINHEIGHT="0">')
+document.write ('<FRAME SRC="' + macNumber + '/bwdaily/frame/db_tocs/toc_news.htm" NAME="nav" scrolling="auto" MARGINWIDTH="4" MARGINHEIGHT="0">')
+document.write ('<FRAME SRC="' + macNumber + '/bwdaily/frame/sponsorad.htm" scrolling="no" MARGINWIDTH="0" MARGINHEIGHT="0"> ')
+document.write ('<\/FRAMESET>')
+document.write ('<FRAME SRC="' + locationString + '?scriptFramed" name="content" SCROLLING="auto" MARGINWIDTH="10" MARGINHEIGHT="2">')
+document.write ('<\/FRAMESET>')
+document.write ('<\/FRAMESET>')
+document.write ('<!--')
+document.write ('<\/HTML>')
+}
+function frameIt () {
+if (location.href.indexOf("businessweek.com") != -1) {
+locationString = window.location.href
+macNumber = ""
+macNumber = getUrlSubstring("@@", "/")
+writeFrameset(locationString, macNumber)
+}
+}
+var isNs4 = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) == 4)
+if ((parent == self && isNs4 == false) || (parent == self && isNs4 == true && window.innerWidth != 0)) {
+frameIt()
+}
+function showGlossaryTerm(term){
+browserVer = parseInt(navigator.appVersion);
+if (navigator.appName == "Nescape" && browserVer < 3){
+remote=window.open("http://www.personalwealth.com/cgi-bin/WebObjects/SNP?action=gotoGlossaryTermPage&glossaryTerm="+term,"glossaryWindow","width=470,height=380");
+} else {
+remote=window.open("http://www.personalwealth.com/cgi-bin/WebObjects/SNP?action=gotoGlossaryTermPage&glossaryTerm="+term,"glossaryWindow","width=470,height=380,scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=yes");
+}
+if( navigator.appName!="Microsoft Internet Explorer" && browserVer>2 ){
+remote.focus();
+}
+}
+function setFocus () {
+}
+//if (document.images) {focus()}
+//-->
+</SCRIPT>
+
+
+</HEAD>
+
+<BODY bgcolor="#ffffff" link="#05319a" alink="#1e317d" vlink="#6680ee" onLoad="setFocus();">
+<A NAME="top"></A>
+<DIV ALIGN=LEFT>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=99%>
+<TR><TD COLSPAN=6>
+<!-- top nav -->
+
+<FONT FACE="Arial,Helvetica,Univers" SIZE=1 CLASS="DBPath"><A HREF="/index.html" TARGET="_top">BUSINESSWEEK ONLINE</A>: &nbsp; <A HREF="/today.htm" TARGET="_top">DAILY BRIEFING</A></FONT><BR>
+
+<script language="javascript">
+<!--
+function setDefault (popup) {
+	if (window.defaultArea != null) {
+		
+		defaultOpt = 0;
+		
+		for (n = 0; n < popup.options.length; n++) {
+			if (popup.options[n].value == defaultArea) {
+				defaultOpt = n;
+				break;
+			}
+		}
+		
+	} else {
+		defaultOpt = 0;
+	}
+	
+	return defaultOpt;
+}
+
+
+function getUrlSubstring (startsWith, endsWith) {
+	// get the position of the first string
+	startPosition = document.location.href.indexOf(startsWith);
+	
+	// if the string is found...	
+	if (startPosition != -1) {
+		// find the position of the second string starting after the first position
+		endPosition = document.location.href.indexOf(endsWith, startPosition);
+		// extract the substring between the two positions
+		returnString = document.location.href.substring(startPosition, endPosition);
+	} else { // if the string isn't found...
+		returnString = "";
+	}
+	
+	// return the substring
+	return returnString;
+}
+
+function readCookie (cookieName) {
+
+	raw_cookie = document.cookie;
+	
+	startPos = raw_cookie.indexOf(cookieName);
+	
+	if (startPos != -1) {
+	
+		startPos = raw_cookie.indexOf("=", startPos) + 1;
+		
+		endPos = raw_cookie.indexOf(";", startPos);
+		
+		if (endPos == -1) { endPos = raw_cookie.length }
+		
+		var cookieValue = raw_cookie.substring(startPos, endPos);
+		
+		return cookieValue
+	
+	} else {
+	
+		return "none";
+		
+	}
+}
+
+function cookieCheck () {
+	var subs_cookie = readCookie("subscriber");
+
+	if (subs_cookie == "yes") {
+	
+		location = "http://bwarchive.businessweek.com";
+		
+	} else if (subs_cookie == "no") {
+	
+		location = "/cgi-bin/redirect?url=%2Fpremium%2Fsubs_search.htm";
+		
+	} else {
+	
+		cookieSetter = window.open(OMTicket + '/cgi-bin/redirect?url=%2Fsearch%2Fin_page_remote.htm', 'in_page_remote', 'dependant=yes,directories=no,height=120,width=220,location=no,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no');
+		
+	}
+}
+
+function optionAction (currSelect, popup) {
+	
+	var defaultOpt = setDefault(popup);
+
+	if (currSelect == "pastIssues") {
+		cookieCheck();
+		popup.selectedIndex = defaultOpt;
+	} else if (currSelect == "advanced") {
+		location = "/cgi-bin/redirect?url=%2Fsearch%2Fadvanced.htm";
+	} else if (currSelect == "null") {
+		popup.selectedIndex = defaultOpt;
+	} else {
+		popup.form.QueryText.focus();
+	}
+}
+
+function queryValid (currForm) {
+
+var defaultOpt = setDefault(currForm.collname);
+
+var popupValue = currForm.collname[currForm.collname.selectedIndex].value;
+	if (popupValue == "pastIssues" || popupValue == "advanced" || popupValue == "null") {
+		currForm.collname.selectedIndex = defaultOpt;
+		currForm.collname.focus();
+		return false;
+	} else {
+		if (currForm.elements['QueryText'].value == "") {
+			alert ("Please enter a search term");
+			currForm.elements['QueryText'].focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
+OMTicket = "";
+// get the macNumber
+OMTicket = getUrlSubstring("@@", "/");
+
+// if OMTicket has a value then pre-append '/'
+if (OMTicket != "" ) { OMTicket = "/" + OMTicket; }
+
+//-->
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="473" 
+background="/search/images/in_page_search/pattern.gif" bgcolor="#CEE7FF">
+
+<FORM METHOD="GET" ACTION="http://search.businessweek.com/search97cgi/s97_cgi" onSubmit="return queryValid(this)">
+<INPUT TYPE="hidden" NAME="action" VALUE="FilterSearch">
+<INPUT TYPE="hidden" NAME="ServerKey" VALUE="Primary">
+<INPUT TYPE="hidden" NAME="filter" VALUE="bwfilt.hts">
+<INPUT TYPE="hidden" NAME="command" VALUE="GetMenu">
+<INPUT TYPE="hidden" NAME="ResultMaxDocs" VALUE="500">
+<INPUT TYPE="hidden" NAME="ResultCount" VALUE="25">
+<INPUT TYPE="hidden" NAME="resulttemplate" VALUE="bwarchiv.hts">
+
+<tr>
+	<td colspan="6"><img src="/images/1x1.gif" width="473" height="4" alt=""></td>
+</tr>
+<tr>
+
+	<td><img src="/images/1x1.gif" width="10" height="20" alt=""></td>
+	<td align="right" valign="middle"><IMG SRC="/search/images/in_page_search/search.gif" 
+	ALT="" WIDTH="40" HEIGHT="8"><img src="/images/1x1.gif" width="6" height="1" alt=""></td>
+	
+	<td valign="top" nowrap><SELECT NAME="collname" onchange="optionAction(this.options[this.selectedIndex].value, this);">
+								<option value="site" selected>Site
+								<option value="Bschools">B-Schools
+								<option value="daily6">Daily Briefing
+								<option value="Ebiz">e.biz
+								<option value="Magazine">Magazine (free only)
+								<option value="Sbiz">Small Business
+								<option value="null">----------------
+								<option value="pastIssues">Past Issues ->
+								<option value="advanced">Advanced Search ->
+								</SELECT><img src="/images/1x1.gif" width="6" height="1" alt=""></td>
+	
+	<td valign="top"><script language="javascript" type="text/javascript" type="text/javascript">
+					<!--
+					if (navigator.appVersion.indexOf("Win") != -1 && navigator.appName.indexOf("Netscape") != -1) {
+						document.write ('<INPUT TYPE="text" value="" NAME="QueryText" SIZE="15" MAXLENGTH="256">');
+					} else {
+						document.write ('<INPUT TYPE="text" value="" NAME="QueryText" SIZE="25" MAXLENGTH="256">');
+					}
+					
+					//-->
+					</script><noscript><INPUT TYPE="text" NAME="QueryText" SIZE="15" MAXLENGTH="256"></noscript></td>
+	
+	<td align="center" valign="middle"><input type="image" 
+	SRC="/search/images/in_page_search/go.gif" ALT="" WIDTH="30" HEIGHT="12" 
+	border="0"><img src="/images/1x1.gif" width="1" height="1" alt=""></td>
+	<td><img src="/images/1x1.gif" width="9" height="1" alt=""></td>
+	
+
+
+</tr>
+<tr>
+	<td colspan="6"><img src="/images/1x1.gif" width="473" height="3" alt=""></td>
+</tr>
+</FORM>
+</table>
+<img src="/images/1x1.gif" width="4" height="6" alt=""><br>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+
+if (document.forms[document.forms.length -1].collname) {
+	
+	var thisPopup = document.forms[document.forms.length -1].collname;
+	
+	var defaultOpt = setDefault (thisPopup);
+	
+	thisPopup.selectedIndex = defaultOpt;
+
+}
+
+//-->
+</script></TD></TR>
+
+<TR><TD COLSPAN=6>
+
+<!-- ad code -->
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="473" "nowrap"><TR><TD WIDTH="100%" NOWRAP>
+<TABLE CELLSPACING="0" CELLPADDING="0" border="0" width="100%" "nowrap">
+<tr>
+	<td width="100%" align="left" nowrap><NOBR><a href="/event.ng/Type=click&ProfileID=1&RunID=2684&AdID=1511&GroupID=27&FamilyID=1&TagValues=151.204.218.311.444.679&Redirect=http:%2F%2Fwww.how2.com" target="_new"><img src="/sponsors/how2/how2_ebiz.gif" border=0 height=60 width=234 alt="Click here for How2"></a><IMG SRC="/bwdaily/images/adspacer.gif" WIDTH="5" HEIGHT="5" BORDER="0"><a href="/event.ng/Type=click&ProfileID=1&RunID=2679&AdID=1512&GroupID=27&FamilyID=1&TagValues=152.204.218.311.444.679&Redirect=http:%2F%2Fwww.e-centives.com%2Fservlet%2Fhome%3Fema006%3D2315" target="_new"><img src="/sponsors/ecentives/ecent_round2.gif" border=0 height=60 width=234 alt="FREE Coupons. Click here!"></a></NOBR></TD>
+</TR>
+<TR>
+	<TD><IMG SRC="/bwdaily/images/white1x1.gif" WIDTH="8" HEIGHT="5" BORDER="0"></TD>
+</TR>
+<TR><TD BGCOLOR="#000000"><IMG SRC="/bwdaily/images/black1x1.gif" WIDTH="8" HEIGHT="1" BORDER="0"></TD></TR></TABLE></TD></TR></TABLE>
+<!-- ad code end -->
+</TD></TR>
+
+
+<TR> <TD WIDTH="*" valign=bottom><!-- section strap -->
+<br><br>
+<!--<a href="http://www.bridge.com" target="_top"><IMG SRC="/images/biocomlogo.gif" WIDTH="100" HEIGHT="32" BORDER="0" ALT="BRIDGE" ALIGN="right"></a>-->
+
+<br>
+
+<!-- story and story toc table -->
+
+<FONT FACE="Arial,Helvetica,Univers" COLOR="#A80008" SIZE=4 CLASS="DBsection">
+
+<b>BW ONLINE DAILY BRIEFING</b>
+</font>
+</td>
+
+</td><TD WIDTH=4><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="4" HEIGHT="1" BORDER="0"></TD><TD WIDTH=8><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="8" HEIGHT="1" BORDER="0"></TD>
+
+	<TD WIDTH=1 BGCOLOR="#ffffff"><IMG SRC="/images/white1x1.gif" WIDTH="1" HEIGHT="32" BORDER="0"></TD><TD WIDTH=8><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="8" HEIGHT="32" BORDER="0"></TD>
+
+	<!-- right column -->
+
+	<TD WIDTH=118 VALIGN=TOP>
+
+	<IMG SRC="/bwdaily/images/white1x1.gif" WIDTH="1" HEIGHT="32" BORDER="0"><br>
+	</td>
+
+</tr>
+
+<tr><TD WIDTH="*">
+
+
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=100%>
+
+<TR><TD COLSPAN=2 BGCOLOR="#000000"><IMG SRC="/bwdaily/images/black1x1.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD></TR><TR><TD COLSPAN=2><IMG SRC="/bwdaily/images/white1x1.gif" WIDTH="1" HEIGHT="3" BORDER="0"></TD></TR>
+
+<TR><TD><FONT FACE="Arial,Helvetica,Univers" COLOR="#A80008" SIZE=2 CLASS="DBByline">
+NEWS FLASH
+
+</FONT></TD><TD ALIGN=RIGHT VALIGN=TOP><FONT FACE="Arial,Helvetica,Univers" SIZE=2 CLASS="DBDate">
+
+December 17, 1999
+</FONT></TD></TR></TABLE>
+<BR>
+<FONT FACE="TimesNewRoman,Times,Serif" SIZE=5 COLOR="#003399" CLASS="DBHeadline">
+Paul Allen Adds Another Circuit to His Wired World</font>
+<br>
+ <FONT FACE="Arial,Helvetica,Univers" SIZE=3 CLASS="DBDeck">
+The Microsoft co-founder will join a cable company and local-phone provider as a start on a nationwide network </FONT>
+
+<!-- 8hed code -->
+<!--</font>
+<FONT FACE="Arial,Helvetica,Univers" SIZE=2 CLASS="DBEightHeads">
+THREE MONTHS LATER.</font> <FONT FACE="TimesNewRoman,Times,Serif" SIZE=3 CLASS="DBBody">-->
+<!-- end 8hed code -->
+
+<!-- pullquote -->
+<!--<TABLE width="200" align=left cellpadding=0 cellspacing=0 border=0><TR><TD>&nbsp;<br><br></td><TD><HR size=1 color="#666666">
+<FONT FACE="TimesNewRoman,Times,Serif" SIZE=5 CLASS="Blurb">text here and here</font> <HR size=1  color="#666666"></td><TD width=10>&nbsp;<br><br></td></tr></table><FONT FACE="TimesNewRoman,Times,Serif" SIZE=3 CLASS="DBBody"> -->
+<!-- end pullquote -->
+	
+<br><br><FONT FACE="TimesNewRoman,Times,Serif" SIZE=3 CLASS="DBBody"> 
+Billionaire Paul Allen is on the verge of creating a national phone and cable empire. So says one of his top executives, Jerald L. Kent, president and chief exec of Charter Communications, the Allen-owned cable company. Allen, co-founder of Microsoft with Bill Gates, has been busy assembling pieces of what he calls his "wired world" strategy, which anticipates a future where people conduct many of their daily activities over the Internet. Allen's strategy now includes building a national phone system, which would compete directly with telcos such as AT&T.<BR>
+<BR>
+According to Kent, Allen figures he can offer phone, video, and digital services to much of the country by linking two of his largest holdings: Charter Cable, which has nearly 6 million subscribers, and RCN, a Princeton (N.J.)-based upstart that has quietly been buying up smaller phone systems throughout the country. Allen paid $1.65 billion for 30% of RCN in October. "RCN is a premier competitor in local telephony that also provides video, and we're a video company that also provides telephony," Kent said on Dec. 15 at the Western Cable show in Los Angeles. "Today, RCN and Charter have the makings of a national footprint."<BR>
+<BR>
+The details of rolling out combined service nationwide are still a bit murky. RCN, which has about 1 million customers, primarily serves businesses. But it has also begun to build systems in local communities to serve consumers, and it plans to offer video and data services in addition to local phone service.<BR>
+<BR>
+</font>
+<FONT FACE="Arial,Helvetica,Univers" SIZE=2 CLASS="DBEightHeads">
+MARKING TERRITORY.</font> <FONT FACE="TimesNewRoman,Times,Serif" SIZE=3 CLASS="DBBody">
+RCN already offers such a package in Waltham, Mass., and in San Francisco, where it competes against AT&T's cable operations. On Dec. 14, RCN said it would pay $345 million to buy a small system in Chicago as well. Charter's 6 million subscribers, on the other hand, are scattered throughout much of the country, with large concentrations in the Southeast and West Coast. Presumably, both Charter and RCN would continue to buy or build in areas not currently served by either.<BR>
+<BR>
+Charter sources say RCN is also seeking approval from Los Angeles officials to build a system costing as much as $1.4 billion to provide phone and other services to consumers in the upscale areas of Pacific Palisades, Sherman Oaks, and Van Nuys. Allen had sought to buy into some of those territories, which had been serviced by cable operator Century Communications. But Allen was outbid for them in March by Adelphia Communications, which agreed to pay $5.2 billion for Century. RCN and Charter have also discussed combining forces in Culver City, Calif., where Charter already provides cable TV and has recently begun offering some phone service as well.<BR>
+<BR>
+Los Angeles could provide the model for a national rollout of services by Charter and RCN. Using superfast fiber optic lines, the companies would provide video, telephone, and data services in a bundle that would be priced well below the piecemeal offerings of other competitors. In places like Waltham, for instance, consumers can sign up for RCN's package of cable, phone, and Internet access for $109 a month. That's 30% less than they would have to pay if they bought the services from other local providers including AT&T, according to RCN. <BR>
+<BR>
+Allen still has a long way to go before his phone service looks anything like a national provider. But as one of the world's wealthiest men, his moves are sure to be closely watched.<BR>
+<BR>
+</font>
+
+<FONT FACE="TimesNewRoman,Times,Serif" SIZE=3 CLASS="DBbio">
+<I>
+By Ronald Grover at the Western Cable Show in Los Angeles</I> 
+</font>
+
+<p>
+<FONT FACE="TimesNewRoman,Times,Serif" SIZE="2" CLASS="DBedit">
+EDITED BY PAUL JUDGE
+</font>
+
+<FONT COLOR="#FFFFFF">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </FONT><BR><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="332" HEIGHT="1" BORDER="0"><BR><DIV ALIGN=RIGHT><A HREF="#top"><FONT FACE="Arial,Helvetica,Univers" SIZE=2 CLASS="DBBackToTop">BACK TO TOP<IMG SRC="/images/redtop.gif" WIDTH="15" HEIGHT="11" BORDER="0"></FONT></A></DIV></TD>
+
+	<TD WIDTH=4><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="4" HEIGHT="1" BORDER="0"></TD><TD WIDTH=8><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="8" HEIGHT="1" BORDER="0"></TD>
+
+	<TD WIDTH=1 BGCOLOR="#000000"><IMG SRC="/images/black1x1.gif" WIDTH="1" HEIGHT="1" BORDER="0"></TD><TD WIDTH=8><IMG SRC="/bwdaily/images/1x1.gif" WIDTH="8" HEIGHT="1" BORDER="0"></TD>
+
+	<!-- right column -->
+
+		<TD WIDTH=118 VALIGN=TOP> 
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+function goInteractive()
+{
+if (document.qchart.symb.value=="" || document.qchart.symb.value==null) {
+   alert("You must enter a ticker symbol or company name first");
+} else {
+	document.jchart.symb.value = document.qchart.symb.value;
+	document.jchart.markets.value = document.qchart.markets[document.qchart.markets.selectedIndex].value;
+	document.jchart.submit();
+}
+}
+
+
+
+// -->
+
+
+
+</SCRIPT>
+
+<FORM action="../../cgi-bin/bw_daily/lookup.pl" NAME="qchart" onSubmit="goInteractive(); return false;" target="_self">
+
+
+<!-- company research table starts here -->
+<TABLE BORDER=0 BGCOLOR="#eeeeee" CELLPADDING="3" CELLSPACING="0" WIDTH="120">
+
+<TR><TD><IMG SRC="/bwdaily/images/research2.gif" WIDTH="119" HEIGHT="20" BORDER="0" ALT="S&amp;P Company Research"></TD></TR>
+
+<TR><TD><font size="-2" face="arial,helvetica,sans-serif" color="#003399">Choose a category</font><br>
+<select name="markets" size=1 onchange="advWarning(this[selectedIndex].value);">
+	<option value="chart">Chart</OPTION>
+	<option value="adv_chart">Adv. Chart *</OPTION>
+	<option value="quote">Quote</OPTION>
+	<option value="profile" selected>Co. Profile</OPTION>
+	<option value="news">Co. News</OPTION>
+	<option value="stats">Co. Stats</OPTION>
+	<option value="estimates">Estimates</OPTION>
+</select></TD></TR>
+
+<TR><TD><IMG SRC="/bwdaily/images/subscrib_only_off.gif" ALT="*Adv. Charts: subscribers only" WIDTH="120" HEIGHT="9" BORDER="0" NAME="warning"></TD></TR>
+
+<TR><TD><font size="1" face="arial,helvetica,sans-serif" color="#003399" class="disclaimer">Enter ticker or name</font><br><INPUT TYPE="text" NAME="symb" VALUE="" SIZE="13" MAXLENGTH="30"><A HREF="javascript: goInteractive()"><IMG SRC="/bwdaily/images/go.gif" WIDTH="18" HEIGHT="18" BORDER="0" ALIGN="absmiddle" ALT="Go"></A></TD></TR>
+
+<TR><TD><font size="1" face="arial,helvetica,sans-serif" color="#666666"  CLASS="DBSide">Charts by BigCharts.com</font></TD></TR>
+
+</TABLE>
+<!-- company research table ends here-->
+
+
+</FORM>
+
+<FORM action="/cgi-bin/bw_daily/lookup.pl" NAME="jchart" target="_self">
+<INPUT TYPE="hidden" name="symb" value="">
+<INPUT TYPE="hidden" name="markets" value="">
+</FORM>
+
+<!-- bwdaily features list -->
+<IMG SRC="/bwdaily/images/features.gif" WIDTH="49" HEIGHT="10" BORDER="0"><BR><BR>
+	<FONT FACE="Arial,Helvetica,Univers" SIZE=2 CLASS="DBSide">
+<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fastecharc.htm">Assistive Technology</A><BR><BR>
+
+	<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fymarch.htm">barker.online</A><BR><BR>
+
+<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fijapanarc.htm">Eye on Japan</A><BR><BR>
+
+	<A href="/cgi-bin/redirect?url=%2Fbwplus/icwallst.htm">Inside Wall Street</A><BR><BR>
+
+	<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fnotsoarc.htm">Not-So-Neutral Corner</A><BR><BR>
+
+<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fpluncharc.htm">Power Lunch</A><BR><BR>
+
+<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fsscopearc.htm">Sector Scope</A><BR><BR>
+
+<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fsoundarc.htm">Sound Money</A><BR><BR>
+
+
+	<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fstreetarc.htm">Street Wise</A><BR><BR>
+	
+	<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fwasharc.htm">Washington Watch</A><BR><BR>
+	<A href="/cgi-bin/redirect?url=%2Fbwdaily%2Fdnflash%2Fdnfarch.htm">News Flash Archive</A>
+
+	
+
+	</TD></TR></TABLE>
+<br><br>
+<!-- story and story toc table end -->
+
+<!-- copyright and disclaimer -->
+
+<!-- copyright and disclaimer -->
+<MAP NAME="footer">
+<AREA TYPE=RECT COORDS="19,7,166,26" href="/cgi-bin/redirect?url=%2Findex.html" TARGET="_top">
+<AREA TYPE=RECT COORDS="2,37,175,51" HREF="http://www.mcgraw-hill.com" TARGET="_top">
+</MAP>
+<DIV ALIGN=CENTER><FONT FACE="Arial,Helvetica,Univers" SIZE=1 COLOR="#999999" CLASS="disclaimer">Copyright 1999, by The McGraw-Hill Companies Inc. All rights reserved.<BR><A href="/cgi-bin/redirect?url=%2Fcopyrt.htm" TARGET="_top">Terms of Use</A> &nbsp; <A href="/cgi-bin/redirect?url=%2Fprivacy.htm" TARGET="_top">Privacy Policy</A></FONT><BR><IMG SRC="/bwdaily/images/logo.gif" WIDTH="194" HEIGHT="55" BORDER="0" USEMAP="#footer"></DIV>
+
+
+</DIV>
+
+</BODY>
+
+</HTML> 
+
+
+<FONT COLOR="#000000" SIZE=3>
+
+
+</PRE></HTML>
+
+

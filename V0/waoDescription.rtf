@@ -1,0 +1,147 @@
+{\rtf0\ansi{\fonttbl\f0\fswiss Helvetica;}
+\paperw11820
+\paperh10100
+\margl120
+\margr120
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\f0\b\i0\ulnone\qc\fs24\fc0\cf0 Web Advanced Objects -- wao\
+
+\b0\i statut: brouillon.\
+revision: 90314 [HD].
+\i0 \
+
+\ql \
+
+\b \
+1- Introduction
+\b0 \
+\
+The Web Akra Objects, 
+\b wao
+\b0 , is an object-oriented representation of HTML documents, which extends a Web server to greatly improve the speed and power with which they can respond to browsers' requests.  It adds a new approach to dynamic pages and integration with SQL databases.\
+\
+
+\b Wao
+\b0  upgrades Web sites to "service centers".  Typical in the telephony industry, the "service center" has a wide range of extended capabilities to configure and monitor the service processes, to handle situations like bursts, graceful degradation under heavy load, prioritization of services, etc.  It is also providing a flexible billing scheme so that a center easily offer pricing strategies that are the most attracting for its customers and the most profitable for itself.\
+\
+
+\b Wao
+\b0  is constructed with an extended Java environment, called 
+\b Plzen
+\b0 .  
+\b Plzen
+\b0  is designed especially to complement the Network Computer, that is, the server side of the Internet.  
+\b Plzen
+\b0  implements the Java standard syntax and virtual machine; it also supports embedded SQL3, and a state-and-event paradigm for objects to facilitate higly interactive situations.  
+\b Plzen
+\b0  virtual machine is built for servers: it is fast and highly configurable, to deal with intensive computional and interactive demands.\
+\
+\
+
+\b 2- Wao architecture
+\b0 \
+\
+
+\b Wao
+\b0  is an add-on system to the basic HTTP server environment.  It adds to it a strong analogy to a public library.\
+\
+The wLibrarian is taking care of the first line of work.  It is working with the HTTP server to handle incoming requests from browsers and forward them to the right location in the wLibrary.  The wLibrary contains wDocuments of all sorts.\
+\
+A wDocument can be a wBook, an wEncyclopaedia, a wPamphlet, a wBrochure.  Such wDocuments are made of wPages, which themselves are made of various wElements (header, paragraph, tables, images, forms, etc).  Each kind of document has its perticular use, and advanced functionality.\
+\
+In the 
+\b wao
+\b0  world, all these things are Java objects.  While the traditional HTTP server approach is to have basic documents as HTML files, 
+\b wao
+\b0  uses compact objects to hold information.  When needed, they are managed by Plzen processors, and they provide standard HTML data back to the server at a much greater speed than when it has to deal with files.\
+\
+The traditional HTTP server and add-on tools are processing general-purpose files, and all work is done at that level of 'precision'.  In contrast, the structured, fine grain elements of 
+\b wao
+\b0  are used by the wLibrary to eliminate redundancy of information, which eliminates the need to repeat the same operations, file after file.  On the server, the HTML files are a tremenduous waste of both processing power and space.  
+\b Wao
+\b0  makes the server a slim, slick system.  Not to overlook, wElements are multi-lingual, and will provide automatically the good version of the data for the language required by the browser.  This is another improvement toward simplicity and effectiveness.\
+\
+
+\b Wao
+\b0  includes a HTML compiler, which reads base HTML files and produce equivalent pre-processed, compact objects.  This enable 
+\b wao
+\b0  to feed itself from an existing set of files, to upgrade an operational system and transform it into a turbo-charged Web site.\
+
+\pard\tx533\tx1067\tx1601\tx2135\tx2668\tx3202\tx3736\tx4270\tx4803\tx5337\fc0\cf0 \
+Once documents are in 
+\b wao
+\b0  format, they can receive added functionality using the full power of extended Java.  SQL-3 actions can also be attached to pages and elements, as embedded Java statements.  This is when the power of 
+\b wao
+\b0  to deal with dynamic pages comes to life, effectively integrating the elegant concept of page publishing with the programming power of Java and database management of SQL-3.\
+\
+The management of operations in 
+\b wao
+\b0  is also part of the object model.  The wLibrarian uses wReaderCards to identify known users, and associate administrative information and procedures to them.  For on-going sessions with browsers, the wLibrarian uses wPresenceCards, and take care of the problems related to the connectionless nature of HTTP.  In the wLibrary, wDocuments are the propriety of wPublishers, which also reflect administrative information and procedures.  The creation and maintenance of these instances is the task of the PublisherGuide and the ReaderClub applications.  These Java applications have extra-flexibility to allow a Web site to let its customers create and manage their respective base of users (browsers access), which can take off some administrative load and gives a better control of its customers' business.  Further more, a Web site can sublet part of its resources to specialized providers, that will then be able to do the administrative work about their own customers (document publishers).\
+\
+The collection of utilization of the site occurs as wTransactionSlips.  The wDocuments, wPublishers and wReaderCards all contain rules about billing, which results in various wTransactionSlips being generated from access by browsers, resource consumptions and other situations.  An accounting application is included, which will periodically perform the consolidation of these transactions and generates operational reports.\
+\
+In an up-and-running Web site, 
+\b wao
+\b0  counts on eRex, the watch-dog, to monitor the load of the documents (this can be summerized by library sections), and to detect and get attention on faults and problematic situations.  wHenry, the system administration application, can modify the configuration parameters in real-time, so that a site never needs to go down even though some parts need to change the way they behave.  All 
+\b wao
+\b0  applications are Java applications, and with the capability of the Plzen processor to update its class definitions without stopping, down-time or special procedures for maintenance is a thing of the past.\
+\
+\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\b\fc0\cf0 3- Operations.
+\b0 \
+
+\pard\tx533\tx1067\tx1601\tx2135\tx2668\tx3202\tx3736\tx4270\tx4803\tx5337\fc0\cf0 \
+The wLibrarian is a Java application, run by a Plzen processor.  When a browser's request arrives to the wLibrarian, it is first associated with a wDocument and, if applicable, a wPresenceCard.  A Plzen processor handling that wDocument (there might be many copies) is choosen, and the request and its work context are transfered to the processor.  At this point, the request is considered to at the 'document level'.\
+\
+When a wDocument receives a request, it locates the wPage to which it is addressed.  If necessary, the page state is restored to what it was the last time it was involved with that perticular request.  The wPage then process the arguments if there is any, forwarding them to its wElements.  If this happens, the wElements will activate their internal logic to react to the incoming data.  After this, it reacts to the request, either by generating a HTML flow as a response, or by handling the control back to the wDocument, so that a reply is generated, normally by the next logical wPage of the document.\
+\
+The work context is updated and then sent back to the wLibrarian.  The HTML data itself can either be given back to the wLibrarian that will pass it to the HTTP server, or sent directly to the HTTP server.\
+\
+The 
+\b wao
+\b0  system is fully distributed; wDocuments and their components are actually processes (Plzen processors) that can be running all over a network of computers.  This offers much better performance than the traditional HTTP server approach, where most of the work is performed on the same CPU where it is residing, and where at most the files might be on a distributed file system, and a database be located on another machine.  Depending on the situation, a site might concentrate Plzen processors on a same CPU, having them share common memory segments, obtaining maximum speed in the exchange of data and services.  Or it can decide to dedicate a given computer for a Plzen processor, making it a crunching engine for documents that are complex in their structure and/or their logic.\
+\
+The instances that are supplying the content of the documents are standard serialized Java instances.  They can be stored in containers on the file system.  But for better performances, they will usually be stored in 
+\b wao
+\b0  object warehouse (a simple and fast object-oriented database system), or in a full blown database server (either a OODBMS or a regular RDBMS).  The Java instances are hardware and OS independant, so just like HTML files they can be created, stored, and used on a mixture of CPUs and operating systems without modification or translation.\
+\
+To simplify the situation in adding functionality to wPages, Plzen adds 'categories' to Java.  This is a limited functional extension of instances, which is similar to subclassing but not as extensive.  A category can be added to instance, in which case the instance gains new methods, without affecting other instances of the same class.  The result is an easy way to add small difference of behaviours, without a exponential explosion of classes and interfaces.  In 
+\b wao
+\b0 , this is used to add functionality to a wElement or wPage, with the ease of the script approach, but keeping the speed of compiled code and the power and strong resilience to bugs that are expected of a Java environment.  \
+\
+\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\b\fc0\cf0 3- Service center facettes.
+\b0 \
+
+\pard\tx533\tx1067\tx1601\tx2135\tx2668\tx3202\tx3736\tx4270\tx4803\tx5337\fc0\cf0 \
+In a service center, it is expected that services from various providers will be coexisting in the same environment.  These providers can very well be competitors, and will not accept that the components of their service be looked or played with.  The object approach of 
+\b Wao
+\b0 , instead of the HTML file-based one, gives big advantages in offering peace of mind to the document providers (publishers), not only from the possibility of attacks from malicious browsers, but also from the threath of larceny from other publishers hosted on the same site.\
+\
+Encrypted wElements can garantee a Publisher that only browsers with a correct key can read the documents, and that even the site administrators can not have access to secret information.  In the case of distrust of even the HTTP software, a Publisher can use a 
+\b wao
+\b0  client class to provide decryption on the client side, thus insuring full confidentiality of the information, even over an unsecure transport.\
+\
+Access levels are also used by wElements and wPages, when the rendering of HTML data is asked by a browser request.  Depending on the identification of the request, only some of the HTML might be generated as a response.  The edition of a document for different users access is simplified, since it is a matter of indicating the access levels of sections, and then letting 
+\b wao
+\b0  produce dynamically an HTML version that contains only what the browser is allowed to see.  No more is it necessary to create many version of the same page just to give more or less information to certain users.\
+\
+For the logic of a document that a Publisher might want to protect, Plzen can encrypt the byte-code at compilation time.  At run-time, it will decrypt the byte-code before executing it by getting a key from a secure key holder 
+\i (contacter G. Brassard pour plus d'info)
+\i0 .  A wDocument can indicate that the key have to be provided by the browser (this is using a cryptographic exchange protocol, so that the clear key does not travel on the network or in the HTTP server).\
+\
+When dealing with a SQL database server, a wDocument, a wReaderCard and a wPresenceCard can be given private database connections.   This insure a security in data operations.  By contrast, with the typical script parser, any browser request is treaded by the database like the same user, with the same connection (the actual database user is the script parser, which logs in when it starts).  Having private connections provides a more precise database utilization, very useful in the case of complex transactions and valuable data, like money transactions (where two-phase commits and rollbacks are important to have).\
+\
+Plzen embedded database statements are not using the JDBC for execution.  Instead a faster system, the akDataPipe, is making direct use of the given database vendor's library most suited for the work.  Plzen processor can have a private database context, or share it with other processors.  Further more, it can be connected to the database by shared memory segments (fastest respone time), or by network transport (most flexible for distribution of processes).\
+\
+\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\b\fc0\cf0 4- Embedded SQL-3 support
+\b0 \
+
+\pard\tx533\tx1067\tx1601\tx2135\tx2668\tx3202\tx3736\tx4270\tx4803\tx5337\fc0\cf0 \
+Plzen understands fully and compiles SQL-3 statements, that are intermixed with other Java code.  This has many advantages.  During the development of a document, it eliminates errors by discovering at compile time the mispelled tables and fields, SQL syntax errors, and type mismatch (when a data dictionary is provided).  This is a great time saver compared to the interpreted scripts and ODBC/JDBC approach, where all pages have to be accessed by the browser, with a live database, before it is possible to know that there are no problems with database queries or updates.  At run-time, it provides an increase in execution, since there is no need to parse the SQL anymore, contrary to the interpreted scripts and ODBC/JDBC, where the SQL statements are parsed every time they must be executed.\
+\
+
+}

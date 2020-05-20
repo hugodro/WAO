@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE WML PUBLIC "-//WAPF ORUM//DTD WML 1.1//EN"
+                               "http://www.wapforum.org/DTD/wml_1.1.xml">
+
+<wml>
+   <card>
+       <p>
+       <do type="accept">
+             <go href="#card2"/>
+       </do>
+       Hello world!
+       This is the first card...
+       </p>
+   </card>
+
+   <card id="card2">
+       <p>
+       This is the second card.
+       Goodbye.
+       </p>
+   </card>
+</wml>

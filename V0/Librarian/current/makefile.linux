@@ -1,0 +1,41 @@
+#/************************************************
+#* File: makefile.
+#* Desc: Building definitions for the Librarian.
+
+WAOHOME= $(ARKAHOME)/Wao
+PROJECT= Librarian
+ARCHITECTURE= linux_i386
+ARCHPATH= $(WAOHOME)/bins/$(ARCHITECTURE)/$(PROJECT)
+SHORTOBJPATH= ../objs_linux
+VPATH= ../objs_linux
+
+
+SRCS= main.cc librarian.cc wlibNotificator.cc \
+	commCenter.cc socketChannel.cc notification.cc \
+	message.cc
+OBJS= main.o librarian.o wlibNotificator.o \
+	commCenter.o socketChannel.o notification.o \
+	message.o
+
+
+INC= -I$(PLZENHOME)/include
+CFLAGS= -g $(DEBUG_LEVELS)
+LDFLAGS= -lstdc++
+
+
+CC= gcc
+
+.SUFFIXES: .c .cc
+
+all: antoine
+
+antoine: $(OBJS)
+	( cd $(SHORTOBJPATH) && \
+	    $(CC) $(INC) $(CFLAGS) -o $@ $(TOBJS) $(OBJS) $(LDFLAGS) $(LIBS) \
+	)
+
+.c.o:
+	$(CC) $(INC) $(CFLAGS) -o $(SHORTOBJPATH)/$@ -c  $<
+
+.cc.o:
+	$(CC) $(INC) $(CFLAGS) -o $(SHORTOBJPATH)/$@ -c  $<

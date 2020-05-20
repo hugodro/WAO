@@ -1,0 +1,50 @@
+#/************************************************
+#* File: makefile.
+#* Desc: Building definitions for the Librarian.
+
+PROJECT= Librarian
+
+include $(AKRAPROJ)/geneMake.lnx
+
+
+SRCS= main.cpp librarian.cpp wlibNotificator.cpp \
+	commCenter.cpp socketChannel.cpp notification.cpp \
+	message.cpp
+
+DBSRCS= dbObject.cpp sqlEngine.cpp mySqlSupport.cpp
+DBOBJS= $(DBSRCS:.cpp=.o)
+
+LOGISRCS= logisinDO.cpp
+LOGIOBJS= $(LOGISRCS:.cpp=.o)
+#LINKEDLIBS= libdbObj.a liblogisin.a
+LINKEDLIBS= libdbObj.a
+
+
+INC:= $(INC) -I/usr/local/include/mysql
+
+
+CFLAGS= -g $(DEBUG_LEVELS) -DMYSQL_3_22
+LDPATH= -L/usr/local/lib/mysql -L.
+#LOCALLIBS= -L. -ldbObj -llogisin
+LOCALLIBS= -ldbObj
+LDFLAGS= $(LDPATH) $(LOCALLIBS) -lstdc++ -lmysqlclient
+
+
+all: antoine
+
+antoine: $(OBJS) $(LINKEDLIBS)
+	( cd $(OBJ_PATH) && \
+	    $(CC) $(INC) $(CFLAGS) -o $@ $(TOBJS) $(OBJS) $(LDFLAGS) $(LIBS) \
+	)
+
+libdbObj.a: $(DBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) rc $@ $(DBOBJS) && \
+	    $(RANLIB) $@ \
+        )
+
+liblogisin.a: $(LOGIOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) rc $@ $(LOGIOBJS) && \
+	    $(RANLIB) $@ \
+        )

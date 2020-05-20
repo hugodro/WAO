@@ -1,0 +1,8 @@
+
+- CoreElementDef
+> WmlElementDef
+
+- CoreAttrDef
+> XmlAttrDef
+>> WmlAttrDef
+

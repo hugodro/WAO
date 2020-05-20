@@ -1,0 +1,44 @@
+
+PROJECT = HParser
+
+include $(AKRAPROJ)/geneMake.osx
+
+include fileList.common
+
+#ADD_CFLAGS+= -DNO_XML_DUP
+CFLAGS+= -g
+EXETARGET= $(OBJ_PATH)/tHtml$(EXE_SUFFIX)
+
+HParser: tHtml
+tHtml: $(OBJS)
+
+LIBDIR= $(OBJDEST)/lib/osx_ppc
+LIBRARIES= -lHtml -lWml -lMarkLang
+
+$(EXETARGET): $(OBJ_PATH) $(OBJS)
+	( cd $(OBJ_PATH) && \
+	 g++ -g -o $@ $(OBJS) \
+		 -L$(LIBDIR) $(LDFLAGS) $(LIBRARIES) \
+	)
+
+.PHONY : all
+all: HParser
+
+.PHONY : clean
+clean :
+	-@rm -rf $(OBJ_PATH)/*.o
+	-@rm -rf $(EXETARGET)
+
+.PHONY : binclean
+binclean :
+	$(RM) $(EXETARGET)
+
+.PHONY : realclean
+realclean : 
+	$(RMDIR) $(OBJ_PATH)
+	$(RM) $(EXETARGET)
+
+.PHONY : bin
+bin: 
+	$(RM) $(EXETARGET)
+	$(MAKE) $(EXETARGET)

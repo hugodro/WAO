@@ -1,0 +1,37 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 2000 Extenta, Inc.
+#
+#------------------------------------------------------------------------------
+
+all : Base Html Wml 
+
+.PHONY : Base Html Wml
+
+Base :
+	cd $@ && $(MAKE) -f makefile.lnx
+
+Hdml :
+	cd $@ && $(MAKE) -f makefile.lnx
+
+Html :
+	cd $@ && $(MAKE) -f makefile.lnx
+
+Wml :
+	cd $@ && $(MAKE) -f makefile.lnx
+
+
+.PHONY : clean
+clean :
+	cd Base && $(MAKE) -f makefile.lnx clean
+	cd Html && $(MAKE) -f makefile.lnx clean
+#	cd Wml && $(MAKE) -f makefile.lnx clean
+#	cd Hdml && $(MAKE) -f makefile.lnx clean
+
+.PHONY : realclean
+realclean:
+	cd src && $(MAKE) -f makefile.lnx realclean
+
+.PHONY: libs
+libs:
+	cd Base && $(MAKE) -f makefile.lnx libs
+	cd Html && $(MAKE) -f makefile.lnx libs

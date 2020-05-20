@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/html
+Set-Cookie: PREF=ID=38f5e3457428e017:TM=1130639161:LM=1130639161:S=Pjkma_W_trnDw-QO; expires=Sun, 17-Jan-2038 19:14:07 GMT; path=/; domain=.google.com
+Server: GWS/2.1
+Transfer-Encoding: chunked
+Date: Sun, 30 Oct 2005 02:26:01 GMT
+

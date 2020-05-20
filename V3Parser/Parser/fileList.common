@@ -1,0 +1,16 @@
+BASESRCS=sqlSupport.cpp \
+	commonData.cpp \
+	extractor.cpp \
+	problem.cpp \
+	hkTrader.cpp \
+	hkProfile.cpp \
+	google.cpp \
+	game.cpp \
+	player.cpp \
+	dbSupport.cpp \
+	pageOfRows.cpp \
+	homeDepot.cpp \
+	goHomeHk.cpp
+
+BASEOBJS=$(BASESRCS:.cpp=.o)
+

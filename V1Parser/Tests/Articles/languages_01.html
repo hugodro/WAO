@@ -1,0 +1,261 @@
+ 
+<html>
+<!-- #BeginTemplate "/Templates/features - article.dwt" --> 
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>Gamasutra - Features &quot;Toward Programmer Interactivity: Writing Games In Modern Programming Languages&quot; [08.13.99]</title>
+<!-- #EndEditable --> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<SCRIPT language=javascript1.1>
+<!--
+function OnTopWindow(winwidth,winheight,file_name) {
+	TopWindow = window.open(file_name,"Media","toolbar=no,width=" +
+winwidth + ",height=" + winheight + ",directories=no,status=yes,scrollbars=no,resize=no,menubar=no")
+}
+//  -->
+</SCRIPT>
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v2.0
+  if (document.images) {
+    var imgFiles = MM_preloadImages.arguments;
+    if (document.preloadArray==null) document.preloadArray = new Array();
+    var i = document.preloadArray.length;
+    with (document) for (var j=0; j<imgFiles.length; j++) if (imgFiles[j].charAt(0)!="#"){
+      preloadArray[i] = new Image;
+      preloadArray[i++].src = imgFiles[j];
+  } }
+}
+
+function MM_swapImgRestore() { //v2.0
+  if (document.MM_swapImgData != null)
+    for (var i=0; i<(document.MM_swapImgData.length-1); i+=2)
+      document.MM_swapImgData[i].src = document.MM_swapImgData[i+1];
+}
+
+function MM_swapImage() { //v2.0
+  var i,j=0,objStr,obj,swapArray=new Array,oldArray=document.MM_swapImgData;
+  for (i=0; i < (MM_swapImage.arguments.length-2); i+=3) {
+    objStr = MM_swapImage.arguments[(navigator.appName == 'Netscape')?i:i+1];
+    if ((objStr.indexOf('document.layers[')==0 && document.layers==null) ||
+        (objStr.indexOf('document.all[')   ==0 && document.all   ==null))
+      objStr = 'document'+objStr.substring(objStr.lastIndexOf('.'),objStr.length);
+    obj = eval(objStr);
+    if (obj != null) {
+      swapArray[j++] = obj;
+      swapArray[j++] = (oldArray==null || oldArray[j-1]!=obj)?obj.src:oldArray[j];
+      obj.src = MM_swapImage.arguments[i+2];
+  } }
+  document.MM_swapImgData = swapArray; //used for restore
+}
+//-->
+</script>
+<body bgcolor="#FFFFCC" link="#880000" vlink="#000000" ONLOAD="MM_preloadImages('/db_area/images/layout/99join_on.gif','#920582065544');MM_preloadImages('/db_area/images/layout/99help_on.gif','#920582346659');MM_preloadImages('/db_area/images/layout/99contact_on.gif','#920582404742');MM_preloadImages('/db_area/images/layout/99shop_on.gif','#920583266882');MM_preloadImages('../../db_area/images/layout/99search_on.gif','#920592177354');MM_preloadImages('/db_area/images/layout/99news_on.gif','#920515198692');MM_preloadImages('/db_area/images/layout/99features_on.gif','#920516131613');MM_preloadImages('/db_area/images/layout/99connect_on.gif','#920516339983');MM_preloadImages('/db_area/images/layout/99job_on.gif','#920516860121');MM_preloadImages('/db_area/images/layout/99direct_on.gif','#920516953545')" ALINK="#880000">
+<!-- #BeginLibraryItem "/Library/99_ads.lbi" --><table width="599" border="0" cellspacing="0" cellpadding="0" height="68">
+  <tr> 
+    <td width="468" height="60" align="left"><!-- begin main ad tag --><A HREF="http://sally.songline.com:80/@KLJ0ZS1J_ZOVDT-VYEFvwWzJwWLv9m2Cr0dsk4dtT3ZhaicrZVhJblRnpya3bGLZ42hZ44DAa4LXMNdiRyBSO0dsk4dtT3ZhaicQw49hrhZjbn2hP49jb4-fw4zs?"><IMG SRC="http://sally.songline.com:80/@GbT39T1iXF2e5MRDY-Yvk4Voam2yaWhvbiDSbGhlk0DWZXIupW9Zk450R0s3dWzt42hZ42hvQX-t2yByw8aCQyLSbGhlk0DWZXIuUG-NZpc4w4zVZTVNw4VjXW-sbGzt?" WIDTH=468 HEIGHT=60 ALT="GDC Hardcore" BORDER=0></A></td>
+    <td align="right" height="60" ><!-- begin main ad tag --><A HREF="http://sally.songline.com:80/@PQI4Ul1glatLYDcnY-wvwWzJwWLv9m2Cr0dsk4dtT3ZhaicrZVhJbN9ta0-wb-jZ42hZR2-A9n9XRSjhU2hZO0dsk4dtT3ZhaicQw49hrhZjbn2hP49jb4-fMTIoeSwoXW-sb--A?"><IMG SRC="http://sally.songline.com:80/@nQQyal18EYOku25pY-avk4Voam2yaWhvbiDSbGhlk0DWZXIupW9Zk4c3k3dA4Gzw42hZ4U2RQXR320Q5Z2-Z4TLSbGhlk0DWZXIuUG-NZpc4w4zVZTVNw4VjXyECMngWM-DjbGzR?" WIDTH=120 HEIGHT=60 ALT="Advertise on Gamasutra." BORDER=0></A></td>
+  </tr>
+</table>
+<!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/Library/99top_nav.lbi" --><table width="600" border="0" height=60 cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan=3><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#990000"><b><i>&nbsp;&nbsp;Miller 
+      Freeman Game Group Presents:<map name="gamahome">
+        <area shape="rect" coords="4,3,131,54" href="/index.htm" alt="Home">
+      </map></i></b></font></td>
+  </tr>
+  <tr> 
+    <td rowspan="2" width="209" height="60"> <img src="/db_area/images/layout/99gamalogo.gif" width="209" height="60" border="0" usemap="#gamahome"></td>
+    <td bgcolor="#000000" width="182" height=23>&nbsp;</td>
+    <td bgcolor="#000000" align="right" width="209"> <a href="/cgi-bin/join.pl" onMouseOver="MM_preloadImages('/db_area/images/layout/99join_off.gif');MM_swapImage('document.Join','document.Join','/db_area/images/layout/99join_on.gif','#920582065544')" onMouseOut="MM_swapImgRestore()"> 
+      <img src="/db_area/images/layout/99join_off.gif" width="40" height="23" border="0" name="Join" alt="Join"></a><img src="/db_area/images/layout/99vert_bar.gif" width="1" height="23"><a href="/help/index.htm" onMouseOver="MM_preloadImages('/db_area/images/layout/99help_off.gif');MM_swapImage('document.Help','document.Help','/db_area/images/layout/99help_on.gif','#920582346659')" onMouseOut="MM_swapImgRestore()"><img src="/db_area/images/layout/99help_off.gif" width="41" height="23" name="Help" border="0" alt="Help"></a><img src="/db_area/images/layout/99vert_bar.gif" width="1" height="23"><a href="/contact_us/index.htm" onMouseOver="MM_preloadImages('/db_area/images/layout/99help_off.gif');MM_swapImage('document.Contact','document.Contact','/db_area/images/layout/99contact_on.gif','#920582404742')" onMouseOut="MM_swapImgRestore()"><img src="/db_area/images/layout/99contact_off.gif" width="78" height="23" name="Contact" border="0" alt="Contact Us"></a><img src="/db_area/images/layout/99vert_bar.gif" width="1" height="23"><a href="/store/index.htm" onMouseOver="MM_preloadImages('/db_area/images/layout/99shop_off.gif');MM_swapImage('document.Shop','document.Shop','/db_area/images/layout/99shop_on.gif','#920583266882')" onMouseOut="MM_swapImgRestore()"><img src="/db_area/images/layout/99shop_off.gif" width="44" height="23" name="Shop" border="0" alt="Shop"></a></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#99CCOO" height=37 colspan=2 align="center"> 
+      <table height=37 cellpadding=0 cellspacing=0 border="0" width="90%">
+        <form method="post" action="/unisearch/" name="unisearchform">
+          <tr valign="bottom"> 
+            <td valign="middle"><!-- #BeginLibraryItem "/Library/99top_navsearch.lbi" --><font size="2" face="Arial, Helvetica">
+<select name="searchfocus">
+  <option value="cgi-bin/AT-editorialsearch.cgi">Editorial</option>
+  <option value="cgi-bin/AT-jobsearchsearch.cgi">Job Search</option>
+  <option value="connection" selected>---Connection---</option>
+  <option value="members">Find a Member</option>
+  <option value="events">Events</option>
+  <option value="directories">---Directories---</option>
+  <option value="companies">Companies</option>
+  <option value="products">Products</option>
+  <option value="resources">Resources</option>
+</select>
+<img src="/db_area/images/layout/99arrow.gif" width="15" height="14"> 
+<input type="text" name="searchquery" size="12" value="">
+</font>
+<!-- #EndLibraryItem --></td>
+            <td valign="middle"> 
+              <input type="image" border="0" name="Search" src="/db_area/images/layout/99search.gif" width="57" height="23" alt="Search">
+            </td>
+          </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- #EndLibraryItem --> 
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="150" valign="top" height="157"> <!-- #BeginLibraryItem "/Library/99side_nav.lbi" --><IMG SRC="/db_area/images/layout/99underlogo.gif" WIDTH="149" HEIGHT="18"><BR>
+<A HREF="/newswire/index.htm" ONMOUSEOVER="MM_preloadImages('/db_area/images/layout/99news_off.gif');MM_swapImage('document.NewsWire','document.NewsWire','/db_area/images/layout/99news_on.gif','#920515198692')" ONMOUSEOUT="MM_swapImgRestore()"><IMG SRC="/db_area/images/layout/99news_off.gif" WIDTH="149" HEIGHT="25" NAME="NewsWire" BORDER="0" ALT="Newswire"></A><BR>
+<A HREF="/features/index.htm" ONMOUSEOVER="MM_preloadImages('/db_area/images/layout/99features_off.gif');MM_swapImage('document.Features','document.Features','/db_area/images/layout/99features_on.gif','#920516131613')" ONMOUSEOUT="MM_swapImgRestore()"><IMG SRC="/db_area/images/layout/99features_off.gif" WIDTH="149" HEIGHT="27" NAME="Features" BORDER="0" ALT="Features"></A><BR>
+<A HREF="/connection/index.htm" ONMOUSEOVER="MM_preloadImages('/db_area/images/layout/99features_off.gif');MM_swapImage('document.Connection','document.Connection','/db_area/images/layout/99connect_on.gif','#920516339983')" ONMOUSEOUT="MM_swapImgRestore()"><IMG SRC="/db_area/images/layout/99connect_off.gif" WIDTH="149" HEIGHT="26" NAME="Connection" BORDER="0" ALT="Connection"></A><BR>
+<A HREF="/jobsearch/index.htm" ONMOUSEOVER="MM_preloadImages('/db_area/images/layout/99job_off.gif');MM_swapImage('document.JobSearch','document.JobSearch','/db_area/images/layout/99job_on.gif','#920516860121')" ONMOUSEOUT="MM_swapImgRestore()"><IMG SRC="/db_area/images/layout/99job_off.gif" WIDTH="149" HEIGHT="27" NAME="JobSearch" BORDER="0" ALT="Job Search"></A><BR>
+<A HREF="/directories/index.htm" ONMOUSEOVER="MM_preloadImages('/db_area/images/layout/99direct_off.gif');MM_swapImage('document.Directories','document.Directories','/db_area/images/layout/99direct_on.gif','#920516953545')" ONMOUSEOUT="MM_swapImgRestore()"><IMG SRC="/db_area/images/layout/99direct_off.gif" WIDTH="149" HEIGHT="34" NAME="Directories" BORDER="0" ALT="Directories"></A>
+<!-- #EndLibraryItem --><br>
+      <table width="125" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td height="12"></td>
+        </tr>
+        <tr valign="top"> 
+          <td><!-- #BeginEditable "sidebar" -->
+            <p><font face="Arial, Helvetica, sans-serif" size="-1" color="99000"><b><i>By 
+              James Hague</i></b></font><br>
+              <font face=arial,helvetica size=-1><b>Gamasutra</b><br>
+              <i>August 13, 1999<br>
+              Vol. 3: Issue 32</i></font> </p>
+            <p><font face="Arial, Helvetica, sans-serif"><b><font size="-1">Printer 
+              Friendly<br>
+              Version <a href="languages_printerfriendly.htm">Available</a></font></b></font></p>
+            <p><b><img src="../../db_area/images/layout/99_side_features.gif" width="120" height="317"></b></p>
+            <!-- #EndEditable --></td>
+        </tr>
+      </table>
+    </td>
+    <td valign="top" WIDTH="450"> 
+      <p align="center"><IMG SRC="../../db_area/images/layout/99_head_features.gif" WIDTH="146" HEIGHT="47" ALT="Features"><BR>
+        <IMG SRC="../../db_area/images/layout/99_body_divider.gif" WIDTH="445" HEIGHT="5"></p>
+      <!-- #BeginEditable "title" --> 
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b>Toward Programmer 
+        Interactivity: Writing Games In Modern Programming Languages</b></font></p>
+      <!-- #EndEditable --> <!-- #BeginEditable "main%20content" --> 
+      <table width="120" border="0" cellspacing="0" cellpadding="6" align="right">
+        <tr align="center" bgcolor="#000000"> 
+          <td><b><font size="-1" face="Arial, Helvetica, sans-serif" color="ffffcc">Contents</font></b></td>
+        </tr>
+        <tr bgcolor="cccc99"> 
+          <td> 
+            <p><img src="../../db_area/images/layout/99_icon_arrow.gif" width="6" height="9"> 
+              <b><font face="Arial, Helvetica, sans-serif" size="-1">Introduction</font></b></p>
+            <p><img src="../../db_area/images/layout/99_icon_arrow.gif" width="6" height="9"> 
+              <b><font face="Arial, Helvetica, sans-serif" size="-1"><a href="languages_02.htm">What 
+              Are the Benefits, Exactly?</a></font></b></p>
+            <p><img src="../../db_area/images/layout/99_icon_arrow.gif" width="6" height="9"> 
+              <b><font face="Arial, Helvetica, sans-serif" size="-1"><a href="languages_03.htm">The 
+              Tale of An Abused Bandicoot</a></font></b></p>
+            <p><img src="../../db_area/images/layout/99_icon_arrow.gif" width="6" height="9"> 
+              <b><font face="Arial, Helvetica, sans-serif" size="-1"><a href="languages_04.htm">Yes, 
+              but Are You Really Serious About All This?</a></font></b></p>
+          </td>
+        </tr>
+      </table>
+      <P><font face="Arial, Helvetica, sans-serif">What's the most productive 
+        way to spend the next month? You could write three or four short stories 
+        for <I>The New Yorker</I>. You could pen maybe half the songs for your 
+        next album. You could devote three hours each morning to updating your 
+        popular game-related news site. Or you could continue debugging the unit 
+        AI for your up-and-coming real-time strategy game, which will put you 
+        close to a third of the way toward getting behavior that won't look blatantly 
+        stupid to the average Wal-Mart shopper.</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Let's face it: game programming 
+        is hard. And it's easy to be jealous of those other guys.</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">That's not to say that writing 
+        songs or fiction is easy, but you're not going to see an author throw 
+        up his hands and say, "The technical problems involved in writing a story 
+        about a mermaid are going to take me six weeks to solve." Or "I've written 
+        this brilliant essay, but I'm having the hardest time keeping the characters 
+        from constantly walking into each other."</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Writing and debugging code 
+        in Visual C++ doesn't have nearly the same easy flow as editing and revising 
+        paragraphs in Word. Quick: You have thirty seconds to compute the value 
+        of "sin(0.43) * 1.8" without using a calculator! (30 second pause.) Odds 
+        are that you're sitting in front of hugely powerful computer, and yet 
+        you didn't have an easy way to get at the answer. There's no sine key 
+        on the Windows calculator. And could you have created a Visual C++ project 
+        and written code to display the result in less than thirty seconds? Something 
+        isn't at all right with this picture.</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Let's jump off into a caffeine-induced 
+        fantasy-land for a minute, and pretend we have a magical system that makes 
+        programming be fantastically straightfoward.</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">First, we dispense with our 
+        math problem by typing it in directly:</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">sin(0.43) * 1.8</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">and we get an answer back right 
+        away:</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">1.227597</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Well, shoot, a Commodore 64 
+        could have done that! Let's write some basic vector functions:</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">magnitude (x,y,z) = sqrt(x*x 
+        + y*y + z*z)</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">dot (x1,y1,y2) (x2,y2,z2) = 
+        x1*x2 + y1*y2 + z1*z2</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">normalize (x,y,z) = (x*m, y*m, 
+        z*m) where m = 1.0 / magnitude(x,y,z)</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Now let's test these out (the 
+        first line of each pair is our query; the second is the result):</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">magnitude(10,20,30)</font><BR>
+        <font face="Arial, Helvetica, sans-serif"><i>37.416574</i></font> 
+      <P><font face="Arial, Helvetica, sans-serif">normalize(10,20,30) </font><BR>
+        <font face="Arial, Helvetica, sans-serif"><i>(0.2672612, 0.5345225, 0.8017637)</i></font></P>
+      <P><font face="Arial, Helvetica, sans-serif">normalize(1,0,0) </font><BR>
+        <font face="Arial, Helvetica, sans-serif"><i>(1,0,0)</i></font></P>
+      <P><font face="Arial, Helvetica, sans-serif">(1,0,0) `dot` (0,1,0) </font><BR>
+        <font face="Arial, Helvetica, sans-serif"><i>0</i></font></P>
+      <P><font face="Arial, Helvetica, sans-serif">We're already getting interesting 
+        results. Obviously, a unit vector is, by definition, already normalized, 
+        but it's nice to be able to quickly verify that. It also looks like a 
+        unit vector dotted with an orthogonal unit vector gives a result of zero. 
+        We haven't proven it, but it's an interesting theory nonetheless. This 
+        is amazing! Three lines of "code" and we're learning properties of vector 
+        math.</font></P>
+      <P><font face="Arial, Helvetica, sans-serif">Even more amazing is that we 
+        aren't in fantasy land at all. This is real code, written in a real programming 
+        language (not just a math package) with existing compilers that generate 
+        machine code. You can be doing the same thing on your Windows, Linux, 
+        or MacOS machine within a few minutes. For free.</font></P>
+      <div align="right"><img src="../../db_area/images/layout/99_body_divider.gif" width="445" height="5"><br>
+        <img src="../../db_area/images/layout/99_icon_arrow.gif" width="6" height="9"> 
+        <b><font face="Arial, Helvetica, sans-serif" size="-1"><a href="languages_02.htm">What 
+        Are the Benefits, Exactly?</a></font></b> </div>
+      <!-- #EndEditable --> </td>
+  </tr>
+</table>
+<table width="600" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="150">&nbsp;</td>
+    <td><!-- #BeginLibraryItem "/Library/99_footer.lbi" --> 
+<p ALIGN="center"><font face="Arial, Helvetica, sans-serif" size="2"><a href="/"><font color="#800000"><br>
+  <br>
+  Home</font></a><font color="#800000"> </font>| </font> <FONT FACE="Arial, Helvetica, sans-serif" SIZE="2"> 
+  <A HREF="/join/"><FONT COLOR="#800000">Join</FONT></A> | <A HREF="/help/"><FONT COLOR="#800000">Help</FONT></A> 
+  | <A HREF="/contact_us/"><FONT COLOR="#800000">Contact Us</FONT></A> | <A HREF="/store/"><FONT COLOR="#800000">Shop</FONT></A> 
+  | </FONT><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2"><a href="/newswire/"><font color="#800000">Newswire</font></a></font><font color="#800000"><br>
+  </font><a href="/writers_guidelines/"><font color="#800000">Write for Us</font></a> 
+  | <a href="/features/"><font color="#800000">Features</font></a> | <a href="/connection/"><font color="#800000">Connection</font></a> 
+  | <a href="/jobsearch/"><font color="#800000">Job Search</font></a> | <a href="/directories/"><font color="#800000">Directories</font></a></font> 
+  <BR>
+
+<HR noshade WIDTH="70%" align="center">
+<div align="center"><FONT FACE="Arial, Helvetica, sans-serif" SIZE="2"><i>Copyright 
+  &copy; 1999-2000 Miller Freeman Inc. All rights reserved.</i></FONT> <BR>
+  <BR>
+  <IMG SRC="/db_area/images/layout/99game.gif" WIDTH="309" HEIGHT="45" ALT="Miller Freeman Game Group: GDC, GDMag, IGF" border="0" usemap="#mfgamegroup"> 
+  <map name="mfgamegroup">
+    <area shape="rect" coords="54,0,251,18" href="http://www.mfgame.com/" alt="The Miller Freeman Game Group">
+    <area shape="rect" coords="194,20,309,45" href="http://www.indiegames.com/" alt="Independent Games Festival">
+    <area shape="rect" coords="119,20,193,45" href="http://www.gdmag.com/" alt="Game Developer Magazine">
+    <area shape="rect" coords="1,20,119,45" href="http://www.gdconf.com/" alt="Game Developers Conference">
+  </map></div>
+<!-- #EndLibraryItem --></td>
+  </tr>
+</table>
+</body>
+<!-- #EndTemplate -->
+</html>

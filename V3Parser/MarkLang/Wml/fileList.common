@@ -1,0 +1,12 @@
+LIBSRCS= container.cpp \
+ wAnalyzer.cpp \
+ wDTD.cpp \
+ wDoc.cpp \
+ wElement.cpp \
+ wElementDef.cpp \
+ wRender.cpp \
+ wTopElements.cpp \
+ wmlPage.cpp
+
+LIBOBJS=$(LIBSRCS:.cpp=.o)
+

@@ -1,0 +1,40 @@
+#/************************************************
+#* File: makefile.
+#* Desc: Building definitions for the Plzen RunTime.
+PROJECT= WebFetcher
+
+include $(AKRAPROJ)/geneMake.lnx
+
+
+SRCS= httpSession.cpp response.cpp delegate.cpp \
+	fileDelegate.cpp request.cpp
+TSRCS= fTest.cpp
+WFBSRCS= fetchWFB.cpp
+FOLIOSRCS= fetchFolio.cpp
+
+TOBJS= $(TSRCS:.cpp=.o)
+WFBOBJS= $(WFBSRCS:.cpp=.o) $(OBJS)
+FOLIOOBJS= $(FOLIOSRCS:.cpp=.o) $(OBJS)
+
+CFLAGS= -g $(DEBUG_LEVELS)
+LDFLAGS= -lstdc++
+
+
+all: testFetcher
+
+testFetcher: $(OBJS) $(TOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(CPP) $(INC) $(CFLAGS) -o $@ $(TOBJS) $(OBJS) $(LDFLAGS) $(LIBS) \
+	)
+
+wfbFetcher: $(WFBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(CPP) $(INC) $(CFLAGS) -o $@ $(WFBOBJS) $(LDFLAGS) $(LIBS) \
+	)
+
+folioFetcher: $(FOLIOOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(CPP) $(INC) $(CFLAGS) -o $@ $(FOLIOOBJS) $(LDFLAGS) $(LIBS) \
+	)
+
+

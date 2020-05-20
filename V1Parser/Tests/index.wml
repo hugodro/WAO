@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
+                        "http://www.wapforum.org/DTD/wml_1.1.xml">
+
+<wml>
+    <card  title="WML">
+        <p mode="nowrap">
+            Akra Logic Inc.
+            <select>
+                <option  onpick="#plzendesc">Plzen</option>
+                <option  onpick="#waodesc">Wao</option>
+                <option  onpick="#inputTest">Input Test</option>
+            </select>
+        </p>
+    </card>
+
+    <card  id="plzendesc">
+        <p>
+            Plzen: Java FSM SQL 
+	        New Generation of Interactive Systems.
+        </p>
+    </card>
+
+    <card  id="waodesc">
+        <p>
+            WAO: The Web as an Interactive Application.
+        </p>
+    </card>
+
+    <card id="inputTest">
+	<p>
+	First Name: <input type="text" name= "first"/><br/>
+	Last Name: <input type="text" name= "last"/><br/>
+	Age: <input type="text" name= "age" format="*N"/>
+	</p>
+    </card>
+</wml>

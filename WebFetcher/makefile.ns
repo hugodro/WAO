@@ -1,0 +1,41 @@
+#/************************************************
+#* File: makefile.
+#* Desc: Building definitions for the Plzen RunTime.
+PROJECT= RunTime
+ARCHITECTURE= next_i386
+SHORTOBJPATH= objs_next
+ARCHPATH= $(SHORTOBJPATH)
+VPATH=$(SHORTOBJPATH)
+
+SRCS= httpSession.cc response.cc delegate.cc fileDelegate.cc
+TSRCS= fTest.cc
+WFBSRCS= fetchWFB.cc
+FOLIOSRCS= fetchFolio.cc
+OBJS= httpSession.o response.o delegate.o fileDelegate.o
+TOBJS= fTest.o
+WFBOBJS= fetchWFB.o $(OBJS)
+FOLIOOBJS= fetchFolio.o $(OBJS)
+
+INC= -I$(PLZENHOME)/include
+CFLAGS= -g $(DEBUG_LEVELS)
+LDFLAGS= -liostream
+
+.SUFFIXES: .cc
+
+all: folioFetcher
+
+testFetcher: $(OBJS) $(TOBJS)
+	$(CC) $(INC) $(CFLAGS) -o $@ $(TOBJS) $(OBJS) $(LDFLAGS) $(LIBS)
+
+wfbFetcher: $(WFBOBJS)
+	$(CC) $(INC) $(CFLAGS) -o $@ $(WFBOBJS) $(LDFLAGS) $(LIBS)
+
+folioFetcher: $(FOLIOOBJS)
+	$(CC) $(INC) $(CFLAGS) -o $@ $(FOLIOOBJS) $(LDFLAGS) $(LIBS)
+
+.c.o:
+	$(CC) $(CFLAGS) -o $(ARCHPATH)/$@ -c  $<
+
+.cc.o:
+	$(CC) $(INC) $(CFLAGS) -o $(ARCHPATH)/$@ -c  $<
+

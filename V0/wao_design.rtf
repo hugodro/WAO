@@ -1,0 +1,189 @@
+{\rtf0\ansi{\fonttbl\f0\fswiss Helvetica;}
+\paperw11440
+\paperh12860
+\margl120
+\margr120
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\f0\b\i0\ulnone\qc\fs24\fc0\cf0 Web Akra Objects -- wao\
+
+\b0\i statut: brouillon.\
+derni‹re revision: 961114 [HD].
+\i0 \
+
+\ql \
+
+\b - Introduction\
+
+\b0 \
+ Le syst‹me wao est con€u pour fournir un environnement de fourniture de documents HTML puissant, int›grant la composition dynamique ’ la gestion de l'interaction et de l'›change de donn›es entre le client et les documents qu'il consulte.\
+\
+Le fonctionnement de wao est bas› sur le mod‹le de simple interaction 'demande de page (param›tris›e) implique r›ponse', dans lequel un client et un serveur se parle l'un apr‹s l'autre.  Le client est un browser HTML, et le serveur s'occupe de faire les op›rations suivantes:\
+1- On re€oit une demande de page 'neuve', qui est associ›e ’ un document quelconque.\
+2- On ouvre un contexte de travail, et le document construit une version HTML de la page.\
+3- La version HTML est renvoy›e, et le contexte de travail est conserv› si n›cessaire.\
+4- Si l'on re€oit une demande de page contenant des donn›es (c'est-’-dire qu'elle comporte des informations suppl›mentaires, qui correspondent ’ des champs ou autre chose du mﬁme genre), le contexte de travail est recr›› et l'information est associ›e aux bons endroits de la page du document.\
+5- De plus, si le document d›finit des actions ’ prendre lors de la r›ception d'une telle page, on les fait.\
+\
+Wao introduit au serveur HTTP le concept de biblioth‹que.  On y retrouve par cons›quent une biblioth›caire, des livres (qui contiennent des pages), des cartes de membre, des frais d'utilisation, des salles d'entreposage et des services suppl›mentaires (photocopie, r›servations, traduction).\
+\
+\
+
+\b - Le mod‹le orient›-objet.\
+
+\b0 \
+Wao est compos› des classes qui mod›lisent une biblioth‹que et les documents multi-m›dia et hyper-textes propres au WWW.  La supervision d'une biblioth‹que (WaoLibrary) est faite par le WaoLibrarian, qui travaille en coop›ration avec le serveur HTTP pour trouver des pages (WaoPage) et les renvoyer en tant que flux HTML au client.  Un livre (WaoBook), qui est l'unit› d'op›ration correspondant ’ une application, et ses pages sont l'›quivalent des ›crans de l'interface, auxquelles on rattache la logique d'interaction et les champs d'entr›e.\
+\
+\
+=======================\
+Classe: WaoLibrary : Object.\
+\
+Description: d›crit le contenu d'une biblioth‹que, et ses particularit›s.\
+\
+\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\fc0\cf0 =======================\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\fc0\cf0 Classe: WaoBook : WaoDocument.\
+\
+Description: repr›sente un document, et sert ’ en g›rer la structure et les pages.  On y retrouve des informations sur la contenance du document, des WaoChapters et des WaoPages.  Un WaoBook peut dire combien de pages il contient (’ moins qu'il ne contienne des chapitres dynamiques).  Il va aussi normalement avoir une table des mati‹res (structure de navigation).  Il peut aussi disposer d'information de formattage global (haut et bas de pages).  Finalement, il contient de l'information sur le nombre maximum de prﬁts simultan›s possible, sur la dur›e d'emprunt permise, sur les coÙts associ›es, etc.  Le WaoBook est capable de se repr›senter dans plusieurs langues et saveurs nationales, en choisissant les bonnes pages ou en indicant aux pages de choisir les bonnes sections.\
+\
+\
+Variables d'instance:\
+    WaoPage pages[]: les pages du livre.\
+    WaoPage tableOfContent: structure de navigation du livre (par concepts).\
+    WaoPage index: structure de navigation du livre (par mot).\
+\
+M›thode de classe:\
+    BuildFromHTMLFiles(List filesPath): construit les objets ›quivalents ’ partir de pages HTML.\
+\
+M›thode d'instance:\
+    htmlPageInContext(String pageName, Dictionary pageParameters, WaoSession workSession): produit la version pour un client d'une page.\
+    WaoPage nextPage(WaoPage aPage): trouve la prochaine page.\
+    WaoPage previousPage(WaoPage aPage): trouve la page pr›c›dente.\
+    WaoPage firstPage(void): retourne la premi‹re page du livre.\
+    WaoPage lastPage(void): retourne la derni‹re page du livre.\
+    addPageAt(WaoPage aPage, int position): ajoute une page dans le livre.\
+    addPageInChapter(WaoChapter aChapter, WaoPage aPage, int position): ajoute une page dans un chapitre.\
+\
+\
+=======================\
+Classe: WaoPage : Object.\
+\
+Description: repr›sente une page d'un WaoBook, et s'occupe de la g›n›ration du HTML correspondant.  C'est l'›quivalent d'une page vue par le browser HTML.  Elle est compos›e de WaoSections, qui sont les vrais conteneurs d'information.  La WaoPage indique si elle est param›trisable (c'est-’-dire qu'elle contient des champs d'information remplis par le browser).\
+\
+Variables d'instance:\
+    WaoSection sections[]: les sections de la page.\
+    Dictionnary interactionFields: les champs qui sont remplis lors d'une r›ponse.\
+    MethodDictionnary actions: les descriptions de m›thodes correspondant ’ certaines sections.\
+\
+M›thode d'instance:\
+    void htmlSelf(WaoHTMLContext aContext): g›n‹re le HTML qui correspond ’ la page.\
+    boolean isInteractive(): indique s'il y a des sections qui vont susciter des r›ponses du client.\
+    boolean isDynamic(): indique s'il y a des sections qui ne sont pas fix›s d'avance (par exemple, un WaoForm qui se pompe d'un dbms).\
+    int htmlSize(): taille de la page (totale si elle n'est pas dynamique, minimum si elle l'est).\
+\
+\
+=======================\
+Classe: WaoChapter : WaoPage.\
+\
+Description: Repr›sente le chapitre d'un WaoBook, et g‹re un groupe de pages.  Le WaoChapter va typiquement faciliter la structure d'un livre, ou encore il va permettre d'englober un ensemble de pages g›n›r›es dynamiquement.\
+\
+\
+=======================\
+Classe: WaoSection: Object.\
+\
+Description: classe abstraite qui repr›sente un morceau de page.  Il y a une sous-classe qui en d›rive par section HTML.  Les instances de cette classe font la g›n›ration de HTML pour leur type pr›cis.\
+\
+\
+=======================\
+Classe: WaoText: WaoSection.\
+\
+Description: section 'text' HTML.\
+\
+\
+=======================\
+Classe: WaoForm: WaoSection.\
+\
+Description: section 'form' HTML.\
+\
+=======================\
+Classe: WaoTextField: WaoSection.\
+\
+Description: section 'text field' HTML.\
+\
+etc: title, header (niveau 1..6), paragraph, formattedText, image, reference, anchor, list (bulleted, numbered, descriptive), listItem, table, form, menu, textField.\
+\
+\
+=======================\
+Classe: WaoHtmlContext: WaoContext.\
+\
+Description: contexte de production de html pour une page.\
+\
+\
+=======================\
+Classe: WaoSession : Object.\
+\
+Description: session de travail entre un client et le WaoLibrarian.  La session repr›sente le client du point de vue du serveur.  Il a un moment d'arriv›, un temps de silence depuis la derni‹re interaction, une carte d'identification, des pr›f›rences de travail.\
+\
+\
+=======================\
+Classe: WaoLibrarian : Supervisor.\
+\
+Description: gestionnaire des WaoBook et des WaoSession.  Il fonctionne en coop›ration avec un serveur HTTP pour composer un fichier HTML ’ partir d'un URL de type 'http'.  Il s'occupe des op›rations globales, fait de l'arbitration, surveille les buffers de travail, les sessions qui sont p›rim›es et les ressources partag›es.  Il poss‹de des pages 'par d›faut', qui sont utilis›es pour faire de la conversation avec le client quand des situations incorrectes ont lieu (error, time out, no access, etc).\
+\
+\
+Classes g›n›riques ’ d›finir:\
+Supervisor: objet de supervision des op›rations, support SNMP, fichiers de configuration, monitoring, etc.\
+WaoDocument: document qui peut se produire dans un format 'client' (livre, dossier, memo ??).\
+WaoContext: contexte de production de donn›es pour un client (html, sgml, postscript ??).\
+\
+\
+Format de description de classe:\
+Classe: \
+Description:\
+\
+Variable de classe:\
+Variables d'instance:\
+M›thode de classe:\
+M›thode d'instance:\
+\
+\
+
+\b - Op›rations.\
+
+\b0 \
+Le fonctionnement d'un syst‹me wao est comme suit:\
+\
+1- Le serveur HTTP (s-h) connait un biblioth›caire 'wao' (WaoLibrarian).\
+2- Le s-h re€oit une demande de page.  Il fait un suivi de la requﬁte au WaoLibrarian.\
+3- Le WaoLibrarian a des blocs de threads, qui sont de r›ception, de gestion, d'ex›cution et d'›mission.  La requﬁte est re€u par un thread r›ception, et on d›cide si on peut r›pondre ou non ’ la requﬁte.  Si on ne peut pas, on fait passer un bloc de retour (une page d'erreur) ’ l'›mission.\
+3- La r›ception fait passer la requﬁte ’ la gestion, qui l'associe avec un objet WaoBook qui contient la page demand›e.\
+4- La gestion amm‹ne l'instance WaoBook en m›moire (s'il ne l'est pas d›j’), fabrique un contexte de travail.  S'il y a des param‹tres dans la requﬁte, ils sont traduit en un dictionnaire et inclus dans le contexte de travail.  La gestion envoit le message de fourniture de page au WaoBook.\
+5- L'instance WaoBook fait correspondre la page demand›e avec un objet WaoPage qu'il g‹re.  Il amm‹ne l'instance en m›moire\
+6- Si la requﬁte du client n'est pas param›tris›e et que la page n'est pas dynamique, le WaoBook envoit le message 'htmlSelf' ’ la page.\
+7- S'il est param›tris› ou que la page est dynamique, il met une demande de travail dans la queue des threads 'ex›cution'.  Dans ce thread, il fait le 'htmlSelf' pour une page non param›tris›e.  Pour une page param›tris›e, il fait un 'handleParameters'.  A ce moment, la WaoPage fait l'extraction des valeurs et les sauve dans ses 'outlets' (elle fait un 'willDoParameters' et 'didParameters' au WaoBook, qui peut faire du traitement ’ ce moment si c'est une sous-classe), puis un 'handleActions' si €a s'est bien pass› (elle fait un 'willDoActions' et 'didActions' au WaoBook), puis un 'whichNextPage', qui retourne la prochaine page ’ utiliser (habituellement la mﬁme qui a fait le travail), puis un 'htmlSelf' ’ la page retourn›e par la derni‹re m›thode.  S'il y a un probl‹me, une page d'erreur est cr››e (en cascade, par la page, sinon par le livre, sinon ce sera le WaoLibrarian).\
+7- Lorsque le html a ›t› compos›, le WaoBook signale au WaoLibrarian que le contexte est prﬁt ’ ﬁtre renvoy› au client (qui attend sur un socket du s-h).  Le contexte passe ’ l'›mission.\
+8- L'›mission renvoit le html au s-h, qui le fait passer au client.\
+
+\pard\tx520\tx1060\tx1600\tx2120\tx2660\tx3200\tx3720\tx4260\tx4800\tx5320\fc0\cf0 \
+\
+
+\b - Expansion de WaoPage\
+
+\b0 \
+\
+\
+
+\b - Notes:\
+
+\b0 \
+L'ensemble des objets sont entrepos›s dans une base de donn›es o-o.  Le WaoLibrarian est donc branch› directement sur cette b.d., et y extrait les versions archiv›es des objets qu'il doit recomposer.\
+\
+Comment associer les requﬁtes successives d'un client avec une session de travail (comment fonctionnent les 'cookies' ?).  Ceci n'est n›cessaire que lorsque le travail des pages s'encha‰ne (contrairement ’ une page 'fiil this up').\
+\
+Il faut trouver une bonne fa€on d'associer de la logique (m›thodes) ou de l'information (champs) aux pages (utiliser l'approche du EOGenericRecord pour les champs, faire des cat›gories de m›thodes associ›es aux instances, utiliser l'approche du d›l›gu› de NeXTSTEP).  Il faut ›viter d'avoir une explosion des sous-classes de WaoPage.\
+\
+Il faut fournir un parser de fichiers HTML qui va g›n›rer un WaoBook ’ partir de documents statiques.\
+\
+\
+
+}

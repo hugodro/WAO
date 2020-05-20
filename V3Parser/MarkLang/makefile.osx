@@ -1,0 +1,39 @@
+#------------------------------------------------------------------------------
+# Copyright (c) 1999 AkraLogic, Inc.
+#
+#------------------------------------------------------------------------------
+
+# If still of any use, Hdml is there.
+all : Base Wml Html
+
+.PHONY : Base Wml Html
+
+Base :
+	cd $@ && make -f makefile.osx
+
+Hdml :
+	cd $@ && make -f makefile.osx
+
+Html :
+	cd $@ && make -f makefile.osx
+
+Wml :
+	cd $@ && make -f makefile.osx
+
+.PHONY : clean
+clean :
+	cd Base && make -f makefile.osx clean
+#	cd Hdml && make -f makefile.osx clean
+	cd Html && make -f makefile.osx clean
+	cd Wml && make -f makefile.osx clean
+
+.PHONY : realclean
+realclean:
+	cd src && make -f makefile.osx realclean
+
+.PHONY : lib
+lib :
+	cd Base && make -f makefile.osx lib
+#	cd Hdml && make -f makefile.osx lib
+	cd Html && make -f makefile.osx lib
+	cd Wml && make -f makefile.osx lib

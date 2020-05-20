@@ -1,0 +1,91 @@
+#/**************************************************
+#* File: Makefile.
+#* Desc: Rules to make the Sgml/HtmlParser.
+#* Module: WAO : SgmlParser.
+#* Rev: 18 mars 1998 : REV 0 : Hugo DesRosiers : Creation.
+#**************************************************/
+
+PROJECT= HtmlParser
+
+include $(AKRAPROJ)/geneMake.lnx
+
+
+BASESRCS=sgml.lcc
+LIBSRCS= sgml.cpp xml.cpp sgFlexer.cpp \
+	sgmlAnalyzer.cpp htmlAnalyzer.cpp \
+	dtdDefinition.cpp htmlDTD.cpp \
+	sgmlDoc.cpp htmlDoc.cpp \
+	sgmlElement.cpp htmlElement.cpp bodyElements.cpp \
+	lists.cpp elementList.cpp \
+	sgElementDef.cpp htElementDef.cpp \
+	topElements.cpp bblockElements.cpp titleElements.cpp nonStdElements.cpp \
+	sformElements.cpp btextElements.cpp \
+	sgmlRenderer.cpp
+TSTSRCS= main.cpp renderJava.cpp renderHtml.cpp 
+#TSTSRCS= main.cpp renderJava.cpp renderHtml.cpp jstRender.cpp
+WMLSRCS= xml.cpp testWml.cpp xmlLexer.cpp \
+	wmlAnalyzer.cpp wmlDTD.cpp wmlDoc.cpp \
+	wTopElements.cpp wmlElement.cpp \
+	wElementDef.cpp container.cpp
+
+LIBOBJS=$(LIBSRCS:.cpp=.o)
+TSTOBJS= $(TSTSRCS:.cpp=.o)
+COREOBJS= sgmlAnalyzer.o sgmlElement.o elementList.o lists.o \
+	sgmlDoc.o dtdDefinition.o sgElementDef.o
+WMLOBJS= $(WMLSRCS:.cpp=.o) $(COREOBJS)
+
+
+#LIBPATH= -L. -L$(PLZENLIB)
+LIBPATH= -L. -L$(OBJDEST)/lib/lnx_386
+#LIBS= -lhtmlp -ljstmgr -lPlzVM -ldl -lpthread
+LIBS= -lhtmlp -ldl -lpthread
+WMLLIBS= -lfl
+
+# Flags for compilation: -pg (gprof) -DDEBUG_LEX.
+CFLAGS= -g -DUSE_SGML
+#CFLAGS= -g -DUSE_XML
+YACCFLAGS= -dyv
+LEXFLAGS= -B+
+
+all: phtml
+
+
+tWml: $(WMLOBJS) libhtmlp.a
+	( cd $(OBJ_PATH) && \
+	    $(CPP)  $(CFLAGS) -o $@ $(WMLOBJS) $(LIBPATH) $(WMLLIBS) \
+	)
+
+libhtmlp.a: $(LIBOBJS)
+	( cd $(OBJ_PATH) && \
+	    $(AR) cru $@ $(LIBOBJS) && \
+	    $(RANLIB) $@ \
+	)
+
+
+phtml: $(TSTOBJS) libhtmlp.a
+	( cd $(OBJ_PATH) && \
+	    $(CPP)  $(CFLAGS) -o $@ $(TSTOBJS) $(LIBPATH) $(LIBS) \
+	)
+
+
+install: libhtmlp.a
+	mv $< lib/lnx_386
+	  
+
+src/sgml.cpp: src/sgml.lcc
+	$(LEX) $(LEXFLAGS) -o$@ $<
+
+src/xml.cpp: src/xml.lcc
+	$(LEX) -Id+ -o$@ $<
+
+cleanbin: $(OBJS)
+	rm $(OBJS)
+
+
+depend: $(LIBSRCS) $(TSTSRCS)
+	( \
+	    makedepend $(INC) -- $(CFLAGS) -- -fmakefile.lnx src/*.cpp \
+	)
+
+# DO NOT DELETE
+

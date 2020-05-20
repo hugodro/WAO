@@ -1,0 +1,83 @@
+Types d'elements dans HTML 3.2:
+
+// Main.
+Html: "HTML", tHtml.
+<DocType decl>
+Head: "HEAD", tHead.
+Body: "BODY", tBody.
+
+// Title.
+Style: "STYLE", tStyle.
+Script: "SCRIPT", tScript.
+Title: "TITLE", tTitle.
+IsIndex: "ISINDEX", tIsindex.
+Base: "BASE", tBase.
+Meta: "META", tMeta.
+Link: "LINK", tLink.
+
+// Body.
+Heading: "H1", "H2", "H3", "H4", "H5", "H6", tH1, tH2, tH3, tH4, tH5, tH6.
+Address: "ADDRESS", tAddress.
+<Body Block>
+
+// Body Block.
+Para: "P", tP.
+UList: "UL", tUl.
+OList: "OL", tOl.
+LiElement: "LI", tLi.
+DefList: "DL", tDl.
+DefTerm: "DT", tDt.
+DefDef: "DD", tDd.
+Pre: "PRE", tPre.
+Div: "DIV", tDiv.
+Center: "CENTER", tCenter.
+BlockQuote: "BLOCKQUOTE", tBlockquote.
+Form: "FORM", tForm.
+Hr: "HR", tHr.
+Table: "TABLE", tTable.
+Caption: "CAPTION", tCaption.
+TableRow: "TR", tTr.
+TableHeader: "TH", tTh.
+TableData: "TD", tTd.
+Dir: "DIR", tDir.
+Menu: "MENU", tMenu.
+Xmp: "XMP", tXmp.
+Listing: "LISTING", tListing.
+PlainText: "PLAINTEXT", tPlaintext.
+
+// Text Block.
+TeleType: "TT", tTt.
+Italic: "I", tI.
+Bold: "B", tB.
+Underscore: "U", tU.
+Strike: "STRIKE", "S", tStrike.
+Big: "BIG", tBig.
+Small: "SMALL", tSmall.
+Sub: "SUB", tSub.
+Sup: "SUP", tSup.
+Em: "EM", tEm.
+Strong: "STRONG", tStrong.
+Dfn: "DFN", tDfn.
+Code: "CODE", tCode.
+Samp: "SAMP", tSamp.
+Kbd: "KBD", tKbd.
+Var: "VAR", tVar.
+Cite: "CITE", tCite.
+Anchor: "A", tA.
+Img: "IMG", tImg.
+Applet: "APPLET", tApplet.
+Param: "PARAM", tParam.
+Font: "FONT", tFont.
+BaseFont: "BASEFONT", tBasefont.
+Map: "MAP", tMap.
+Area: "AREA", tArea.
+Break: "BR", tBr.
+
+// Form's special.
+Input: "INPUT", tInput.
+Select: "SELECT", tSelect.
+TextArea: "TEXTAREA", tTextarea.
+Option : "OPTION", tOption.
+
+/*** Non Standard ***/
+Span: "SPAN", tSpan.

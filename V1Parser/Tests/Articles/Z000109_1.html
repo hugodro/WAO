@@ -1,0 +1,604 @@
+<html>
+<head><title>AltaVista Live </title></head>
+<!PAGEREF 16102>
+<style type=text/css><!--
+A{color:#000099;}
+A:Visited{color:#663366;}
+A:Active{color:Red;}
+A:Hover{color:DodgerBlue;}
+TD{font-family:Arial, sans-serif;}
+TD.NavyBold{background-color: #003366; color: #FFFFFF; font-weight: bold; font-size:9pt}
+TD.SlateBlueBold{background-color: #336699; color: #FFFFFF; font-weight: bold; font-size:9pt}
+TD.Black{background-color: #000000; color: #FFFFFF; font-size:9pt}
+#rg{font-size:9pt}
+#nt{font-size:8pt}
+#hnt{font-size:8pt; font-weight:bold}
+#tl{font-size:10pt}
+#srg{font-family:Times,serif; font-size:9pt}
+#stl{font-family:Times,serif; font-size:12pt}
+#ct{font-size:10pt;font-weight:bold;}
+.lgmod{font-size:12pt;font-weight:bold;}
+.smmod{font-size:9pt;font-weight:bold;}
+.smtxt{font-size:8pt;}
+.mdtxt{font-size:9pt;}
+.lgtxt{font-size:12pt;}
+.pgtitle{font-size:12pt;color:#003366;}
+.nv{color:White;}
+A.ed{color:black;text-decoration:none;}
+A.ed:Visited{color:black;text-decoration:none;}
+A.ed:Active{color:black;text-decoration:none;}
+A.ed:Hover{color:black;text-decoration:none;}
+TD.nvs{font-size:9pt;font-weight:bold;color:#7b94ce;text-align:center;}
+A.nv{font-size:9pt;color:#ffffff;font-weight:bold;}
+A.nv:visited{font-size:9pt;color:#ffffff;}
+A.nv:hover{font-size:9pt;color:#ffcc33;}
+A.nv:link{font-size:9pt;color:#ffffff;}
+A.nv:active{font-size:9pt;color:#ffffff;}
+-->
+</style>
+<SCRIPT LANGUAGE="javascript">
+<!-- 
+//function generates the date and changes isDay to correct mode for use in writePic
+function writeDate(){
+var months=new Array(13);
+months[1]="January";
+months[2]="February";
+months[3]="March";
+months[4]="April";
+months[5]="May";
+months[6]="June";
+months[7]="July";
+months[8]="August";
+months[9]="September";
+months[10]="October";
+months[11]="November";
+months[12]="December";
+var time=new Date();
+var lmonth=months[time.getMonth() + 1];
+var date=time.getDate();
+var year=time.getYear();
+var Hours;
+var Mins;
+var TimeSuffix;
+Hours = time.getHours();
+if (Hours >= 12) {
+TimeSuffix = " P.M.";
+}
+else {
+TimeSuffix = " A.M.";
+}
+if (Hours > 12) {
+Hours -= 12;
+}
+if (Hours == 0) {
+Hours = 12;
+}
+Mins = time.getMinutes();
+if (Mins < 10) {
+Mins = "0" + Mins;
+}
+// Y2K Fix by Isaac Powell
+// http://onyx.idbsu.edu/~ipowell
+if ((navigator.appName == "Microsoft Internet Explorer") && (year < 2000))		
+year="19" + year;
+if (navigator.appName == "Netscape")
+year=1900 + year;
+document.write("" + lmonth + " ");
+document.write(date + ", " + year + " ");
+document.write(Hours + ":" + Mins + TimeSuffix +"");
+}
+//writePic selects the right pic for the time of day and writes it
+function writePic(){
+var time2 = new Date(); //construct a new date obj
+//add a variable to check the time of day, will use it to put isDay in the correct mode
+var hour = time2.getHours();
+if ((hour >=7)&&(hour <19)){ 
+document.write('<IMG SRC="/cobrand/AVLive/images/daytime.gif" width=53 height=47 align=right hspace=0>'); 
+}//end of if 
+else { 
+document.write('<IMG SRC="/cobrand/AVLive/images/nighttime.gif" width=77 height=46 align=right hspace=0>');
+}//end of else
+}//end of method
+// -->
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+function doSubmit(form) {
+form.submit()
+}
+/*
+imageName is the NAME attribute of the IMG
+imageLocation is the URL/HREF of the new image to be uploaded.
+*/
+function locateHighlight(sName, iURL)
+{
+if (document.images) document.images[sName].src = iURL;
+return true;
+}
+// -->
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function stopError() {  
+return true;
+}
+window.onerror = stopError;
+// -->
+</SCRIPT>
+<style >
+<!-- hide
+.whiteText {color:#FFFFFF}
+-->
+</style>
+<title>AltaVista Live</title></head>
+<BODY bgcolor=#FFFFFF text=#000000 vLink=#663366 link=#000099   marginheight=0 topmargin=0>
+<STYLE type="text/css"><!--
+A#LnLive {color:#ffcc00} DIV#LnLive {color:#ffcc00} SPAN#LnLive {color:#ffcc00}
+A#LnHome {color:#ffcc00} DIV#LnHome {color:#ffcc00} SPAN#LnHome {color:#ffcc00}
+--></STYLE>
+<table width=100% cellpadding=0 cellspacing=0 border=0>
+<tr><td colspan=2 width=100%><table width=760 cellpadding=0 cellspacing=0 border=0><tr><td></td></tr></table></td></tr>
+<tr><td align=left bgcolor=#ffffff width=135><img src="http://images.av.com/avstatic/images/sublivelogo.gif" width=133 height=28 border=0 vspace=5 hspace=10></td>
+<td align=right>
+<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td width=100% align=right nowrap>
+&nbsp;&nbsp;&nbsp;&nbsp;</td><td align=left nowrap valign=top>
+<font id=rg COLOR=#000000><B><a href="/u?ep=1013&spage=custom_options/changenamepassword.htm&ck=&rurl=http://live.av.com/avlive/scripts/editorial.dll%3Fcategoryid%3D%26only%3Dy%26bfromind%3D980%26eetype%3Darticle%26render%3Dy%26eeid%3D1355681&furlpg=custom_options/decision.htm" target="_top"><font color=#000000>REGISTER NOW !</font></a></B>&nbsp;<br></font>
+<font id=nt color=#000000>AltaVista Members <a href="/s?spage=custom_options/logon.htm&ck=&rurl=http://live.av.com/avlive/scripts/editorial.dll%3Fcategoryid%3D%26only%3Dy%26bfromind%3D980%26eetype%3Darticle%26render%3Dy%26eeid%3D1355681&furl=http://live.av.com/avlive/scripts/editorial.dll%3Fcategoryid%3D%26only%3Dy%26bfromind%3D980%26eetype%3Darticle%26render%3Dy%26eeid%3D1355681"><font id=nt color=#000000 target="_top">Sign In</font></a></font>
+</td><td width=10>&nbsp;&nbsp;&nbsp;</td></tr></table>
+</td></tr><tr valign=bottom height=19><td valign=top colspan=2 class=NavyBold width=100%><table cellpadding=0 cellspacing=0 border=0><tr>
+<td height=19 nowrap class=NavyBold><IMG SRC=/cobrand/AVLive/images/clear.gif WIDTH=20 HEIGHT=1></td>
+<td height=19 nowrap class=NavyBold>
+<TABLE cellspacing=0 border=0><TR>
+<TD><A class=nv target=_top 
+href="http://www.altavista.com"
+><SPAN id=LnSearch>Search</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://live.av.com/scripts/staticpage.dll?spage=hb/tab1_homepage.htm&only=y&searchscope=WebSearch&ck="
+><SPAN id=LnLive>Live</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://www.shopping.com"
+><SPAN id=LnShopping>Shopping</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://local.av.com/scripts/staticpage.dll?spage=hb/tab1_homepage.htm&only=y&searchscope=WebSearch&ck="
+><SPAN id=LnLocal>Local</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://www.microav.com"
+><SPAN id=LnFree Internet Access>Free Internet Access</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://mail.altavista.com"
+><SPAN id=LnEmail>Email</SPAN></A></TD>
+<TD width=20></TD>
+
+</TABLE>
+
+</td></tr></table></td></tr></table>
+<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td height=22 nowrap class=SlateBlueBold>
+<table cellpadding=0 cellspacing=0 border=0><tr><td height=22 nowrap class=SlateBlueBold><IMG SRC="/cobrand/AVLive/images/clear.gif" WIDTH=85 HEIGHT=1></td>
+<td height=22 class=SlateBlueBold>
+<TABLE cellspacing=0 border=0><TR>
+<TD><A class=nv target=_top 
+href="http://live.av.com/"
+><SPAN id=LnHome>Home</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://money.av.com/scripts/staticpage.dll?spage=fc/home.htm&only=y&ck="
+><SPAN id=LnMoney>Money</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://live.av.com/scripts/editorial.dll?eeid=1239338&eetype=article&render=y&ck="
+><SPAN id=LnNews>News</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://live.av.com/scripts/editorial.dll?brequest=index&action=p&recid=974&ck&ck="
+><SPAN id=LnSports>Sports</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://search.thetrip.com"
+><SPAN id=LnTravel>Travel</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://careers.altavista.com"
+><SPAN id=LnCareers>Careers</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://health.av.com/"
+><SPAN id=LnHealth>Health</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://live.av.com/scripts/editorial.dll?brequest=index&action=p&recid=877&ck="
+><SPAN id=LnEntertainment>Entertainment</SPAN></A></TD>
+<TD width=20></TD>
+<TD><A class=nv target=_top 
+href="http://babelfish.altavista.com/"
+><SPAN id=LnTranslation>Translation</SPAN></A></TD>
+<TD width=20></TD>
+
+</TABLE>
+
+</td></tr></table></td></tr><tr><td><table width=760 cellpadding=0 cellspacing=0 border=0><tr><td></td></tr></table></td></tr></table>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr><td height=5 colspan=2></td></tr>
+<tr><td valign=top>
+<table width=286 cellpadding=0 cellspacing=0 border=0>
+<tr><td width=286 valign=top>
+<font id=nt>
+<img src=/cobrand/AVLive/images/free_mail.gif border=0 with=15 height=15 hspace=5 vspace=0><font id=nt><A HREF="http://reg.zip2.com/cgi-bin/registration.exe?">Free email</A></font>
+<img src=/cobrand/AVLive/images/av_notify.gif border=0 width=15 height=15 hspace=5 vspace=0><a href="/scripts/staticpage.dll?spage=custom_options/download_alert.htm&ck=" target=_top>Alert Me</a>
+</FONT></TD>
+</tr></table>
+</td>
+<td align=right>
+
+
+<a href="http://ad.doubleclick.net/jump/my.av.com/news;sz=468x60;ord=3869310000"><img src="http://ad.doubleclick.net/ad/my.av.com/news;sz=468x60;ord=3869310000" width=468 height=60 border=0></a><br>
+</td></tr></table>
+<STYLE type="text/css"><!--
+A#LnHome {color:#ffffff} DIV#LnHome {color:#ffffff} SPAN#LnHome {color:#ffffff}
+A#LnNews {color:#ffcc00} DIV#LnNews {color:#ffcc00} SPAN#LnNews {color:#ffcc00}
+--></STYLE><table><tr><td bgcolor=#FFFFFF> </td></tr></table>
+<table border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td width=150 align=right>
+<table width=100% cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td bgcolor=#000000 width=2 rowspan=2 align=left><IMG src=/cobrand/AVLive/images/clear.gif height=25 width=2></td>
+<td valign=top><table cellpadding=0 cellspacing=0 border=0 width=100% bgcolor=#000000><tr height=2><td valign=top><IMG src=/cobrand/AVLive/images/clear.gif height=2 width=1></td></tr></table></td>
+<td bgcolor=#333366 width=2 rowspan=2 align=right><IMG src=/cobrand/AVLive/images/clear.gif height=25 width=2></td>
+</tr>
+<tr>
+<td valign=middle align=middle bgcolor=#0099CC width=100% height=25 nowrap>
+<font id=rg>&nbsp;<A HREF=/scripts/staticpage.dll?spage=hb/tab1_homepage.htm&only=y&ck= target=_top style="text-decoration:none; font-weight:bold; color:#000000"><font color=#ffffff>Live! Home</a></font>&nbsp;</font>
+</td>
+</tr>
+</table>
+</td>
+<td bgcolor=#FFFFFF valign=bottom width=3>
+<IMG src=/cobrand/AVLive/images/clear.gif height=2 width=3><br></td>
+<td valign=middle align=middle bgcolor=#336699 width=150 nowrap>
+<font id=rg>&nbsp;<A HREF=/scripts/staticpage.dll?spage=hb/tab2_homepage.htm&only=y&ck= target=_top style="text-decoration:none; font-weight:bold; color:#000000"><font color=#ffffff>Find&nbsp;Anything</a></font>&nbsp;</font>
+</td>
+<td bgcolor=#FFFFFF valign=bottom width=3><IMG src=/cobrand/AVLive/images/clear.gif height=2 width=3></td>
+<td valign=middle align=middle bgcolor=#336699 width=150 nowrap>
+<font id=rg>&nbsp;<A HREF=/scripts/community.dll?ep=0&ck= target=_top style="text-decoration:none; font-weight:bold; color:#000000"><font color=#ffffff>Community</a></font>&nbsp;</font>
+</td>
+<td bgcolor=#FFFFFF valign=bottom width=3><IMG src=/cobrand/AVLive/images/clear.gif height=2 width=3></td>
+<td valign=middle align=middle bgcolor=#336699 width=150 nowrap>
+<font id=rg>&nbsp;<A HREF=/scripts/config.dll?usejs=1&type=configpersonalize&method=1&display=1&returnto=staticpage.dll,spage%3dhb%2Ftab4_homepage.htm%26only%3dy&ck= target=_top style="text-decoration:none; font-weight:bold; color:#000000"><font color=#ffffff>My Live!</a></font>&nbsp;</font>
+</td>
+<td bgcolor=#FFFFFF valign=bottom width=3><IMG src=/cobrand/AVLive/images/clear.gif height=2 width=3></td>
+</tr>
+</table>
+<table width=100% border=1 cellpadding=0 cellspacing=0  bordercolor=#000000><tr><td valign=top width=25% rowspan=2>
+
+<TABLE width=100% cellpadding=0 cellspacing=0 border=0 bgColor=#ffcc33>
+<TR>
+<td valign=bottom align=left bgColor=#ffcc33 height=22  class=smmod  >
+<spacer type=horizontal size=10>
+AltaVista Search
+</td>
+</TR>
+</table>
+<table border=0 width=100% cellpadding=0 cellspacing=0 bgColor=#ffcc33><tr>
+<td width=10>&nbsp;</td>
+<td valign=top>
+<table border=0 cellspacing=0 width=100% cellpadding=0 bgColor=#ffcc33>
+<tr><td class=smtxt><form target=_top action="http://www.altavista.com/cgi-bin/query" name=mfrm><INPUT TYPE=hidden NAME=pg VALUE=q>
+<input type=hidden name="spage" value="search/results.htm">
+Find this:
+</td></tr>
+<tr><td align=left nowrap class=smtxt>
+<input type=text name=q size=10 maxlength=800 value="">&nbsp;
+<input type=image src="/cobrand/AVLive/images/search.gif" value="Search" border=0 align="absmiddle"><br>
+</td></tr>
+<tr><td>
+<input type=hidden name=stype value=stext>
+</form>
+</td></tr></table>
+</td>
+<td width=10>&nbsp;</td>
+</tr></table>
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr><td bgcolor=#000000 valign=top height=2><IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr>
+</table>
+
+<table width=100% border=0 cellpadding=10 cellspacing=0>
+<TR><TD WIDTH=100% VALIGN=TOP>
+<FONT id=hnt SIZE=1 COLOR="GRAY">
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<FONT id=hnt SIZE=2>B&nbsp;Y&nbsp; T&nbsp;O&nbsp;P&nbsp;I&nbsp;C</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=930&ck=">National</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=896&ck=">International</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=920&ck=">Money</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=979&ck=">Technology</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=908&ck=">Millennium & Y2K</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=974&ck=">Sports</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=877&ck=">Entertainment</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=888&ck=">Health</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=947&ck=">Politics</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=905&ck=">Life & Leisure</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=966&ck=">Human Rights</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=984&ck=">Travel</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=940&ck=">Offbeat</a><BR>
+<P>
+<FONT id=hnt SIZE=2>B&nbsp;Y&nbsp; R&nbsp;E&nbsp;G&nbsp;I&nbsp;O&nbsp;N</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=951&ck=">Africa</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=954&ck=">Asia</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=957&ck=">Europe</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=960&ck=">Latin America</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=963&ck=">Mideast</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=935&ck=">North America</a><BR>
+<P>
+<FONT id=hnt SIZE=2>B&nbsp;Y&nbsp; P&nbsp;R&nbsp;O&nbsp;V&nbsp;I&nbsp;D&nbsp;E&nbsp;R</FONT><BR>
+<FONT id=hnt SIZE=3 COLOR="GRAY">Washington Post</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=937&ck=">Post Stories</a><BR>
+<BR><FONT id=hnt SIZE=3 COLOR="GRAY">New York Times</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=933&ck=">Times Stories</a><BR>
+<BR><FONT id=hnt SIZE=3 COLOR="GRAY">Industry Standard</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=1147&ck=">Top Stories</a><BR>
+<BR><FONT id=hnt SIZE=3 COLOR="GRAY">ZDNet</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=981&ck=">ZDNet Top Stories</a><BR>
+<BR><FONT id=hnt SIZE=3 COLOR="GRAY">AP</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=929&ck=">AP News</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=972&ck=">AP Sports</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=910&ck=">AP Money</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=893&ck=">AP International</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=886&ck=">AP Health</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=875&ck=">AP Entertainment</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=977&ck=">AP Tech</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=944&ck=">AP Politics</a><BR>
+<BR><FONT id=hnt SIZE=3 COLOR="GRAY">Reuters</FONT><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=898&ck=">Reuters International</a><br>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=926&ck=">Reuters Money</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=879&ck=">Reuters Entertainment</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=1175&ck=">Reuters Technology</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=976&ck=">Reuters Sports</a><BR>
+<A HREF="/scripts/editorial.dll?brequest=index&action=p&recid=949&ck=">Reuters Politics</a><BR>
+
+</TD></TR></TABLE>
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr><td bgcolor=#000000 valign=top>
+<IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr>
+</table>
+
+<table width=100% border=0 cellpadding=10 cellspacing=0>
+<TR><TD WIDTH=100% VALIGN=TOP BGCOLOR="#FFFFCC">
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<P>
+<FONT id=hnt SIZE=2>V&nbsp;O&nbsp;I&nbsp;C&nbsp;E&nbsp;&nbsp;C&nbsp;H&nbsp;A&nbsp;T&nbsp;S</FONT><BR>
+<A HREF="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Stock+Market&ck=&ver=hb1.2.2">Stock Market</a><BR>
+<a href="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Technology&ck=&ver=hb1.2.2">Technology</a><br>
+<a href="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Current+Events&ck=&ver=hb1.2.2">Current Events</a><br>
+<a href="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Sports&ck=&ver=hb1.2.2">Sports</a><br>
+<a href="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Politics&ck=&ver=hb1.2.2">Politics</a><br>
+<a href="http://avlbeta.zip2.com/avlive/scripts/community.dll?ep=171&c.vr=Karaoke&ck=&ver=hb1.2.2">Karaoke</a><br>
+</FONT>
+</TD></TR></TABLE>
+
+<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td bgcolor=#000000 valign=top><IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr></table>
+
+<Table width=187 Border=0 cellspacing=0 cellpadding=0><tr><Td></td></tr></table></td>
+
+<td valign=top width=50% bgcolor=#ffffff>
+<Table width=378 Border=0 cellspacing=0 cellpadding=0><tr><Td></td></tr></table>
+<table width=100% border=0 cellpadding=10 cellspacing=0>
+<TR><TD WIDTH=100% VALIGN=TOP>
+
+<!---DISPLAY TEMPLATE CATEGORY--->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=3><B>
+Microsoft's Latest Deals
+</B></FONT>
+<BR>
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=2>
+14:07EST
+</FONT>
+
+<P>
+  <FONT COLOR=gray FACE="ARIAL,HELVETICA,SANS-SERIF" size=1><I>
+By The Associated Press
+<BR>
+01/09/00
+</I></FONT>
+<HR NOSHADE SIZE=-1 width=35% ALIGN=left>
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=2>
+In the last 13 months, Microsoft Corp. has invested more than $8
+ billion in high-speed Internet development and wireless networks, mostly through equity investments and joint ventures with other companies. The idea, Microsoft executives said, is to ensure that Microsoft can deliver its new Internet services and software through a strong infrastructure.
+</FONT>
+<P>
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=2>
+Here's a breakdown of the company's largest deals: 
+<P>
+Dec. 8, 1999 -- Microsoft and Ericsson announce a strategic partnership to develop software to enhance wireless Internet access. The two companies plan to form a joint company to build new software to take advantage of Microsoft's server software and Ericsson's wireless systems.
+
+
+<p>
+<TABLE WIDTH="180" ALIGN=RIGHT CELLPADDING=10 CELLSPACING=0 BORDER=0>
+<TR>
+<TD BGCOLOR="#ffffcc">
+
+
+
+<!--TOP TEMPLATE--->
+<FONT Face="Helvetica Black, Arial Black, Helvetica Bold, Arial Bold, Helvetica, Arial" size=1 COLOR="GRAY">
+T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y
+</font>
+</A><BR>
+<!--DISPLAY TEMPLATE -->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<A HREF="/scripts/editorial.dll?bfromind=978&eeid=1355681&eetype=article&render=y&ck=">Microsoft's Latest Deals</A></FONT></B> <BR>
+
+<!--DISPLAY TEMPLATE -->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<A HREF="/scripts/editorial.dll?bfromind=978&eeid=1355628&eetype=article&render=y&ck=">Cybershops Eye Consumer Lure</A></FONT></B> <BR>
+
+<!--DISPLAY TEMPLATE -->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<A HREF="/scripts/editorial.dll?bfromind=978&eeid=1353443&eetype=article&render=y&ck=">Japan to Develop Nuke Robot</A></FONT></B> <BR>
+
+<!--DISPLAY TEMPLATE -->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<A HREF="/scripts/editorial.dll?bfromind=978&eeid=1353241&eetype=article&render=y&ck=">Pac Bell Hit by Hacker Threat</A></FONT></B> <BR>
+
+<!--DISPLAY TEMPLATE -->
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>
+<A HREF="/scripts/editorial.dll?bfromind=978&eeid=1351457&eetype=article&render=y&ck=">Y2K Glitch Hits Credit Cards</A></FONT></B> <BR>
+
+
+<!--BOTTOM TEMPLATE-->
+
+
+</FONT>
+</TD></TR></TABLE>
+
+
+
+
+
+
+
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=2>
+Nov. 15, 1999 -- Microsoft makes an undisclosed investment in Korea Telecom Freetel. The telecom company will bring Microsoft's MSN wireless Internet services to its 4.2 million customers. The two companies will also work on joint development projects.<p>Nov. 12, 1999 -- Microsoft makes another undisclosed investment in Tawain broadband Internet service provider GigaMedia. The two will create and market a co-branded broadband Web site and e-commerce site.<p>Nov. 5, 1999 -- Microsoft invests $200 million in wireless high-speed Internet provider Teligent Inc., based in Vienna, Va., to build local wireless networks.<p>Oct. 26, 1999 -- NTT Mobile Communications Network, Japan's largest mobile communications operator, enters into a joint venture with Microsoft. The new company, called Mobimagic Company Ltd., will develop and market new Internet services for NTT's mobile computing customers.<p>Sept. 8, 1999 -- Microsoft invests $175 million in a joint venture between Softbank Corp. and Global Crossing Inc. The new company, Asia Global Crossing, will increase broadband connections in Asia.<p>Sept. 7, 1999 -- United Global Communications gives Microsoft a minority stake in the company for $219 million. United is the largest global broadband communications provider, with 20 offices worldwide.<p>Aug. 16, 1999 -- Microsoft invests $126 million in Globo Cabo S.A., the leading cable TV operator in Brazil, with 4.5 million homes connected. The companies will focus on bringing interactive TV and high-speed Internet connections to Globo Cabo's customers.<p>July 21, 1999 -- Microsoft announces it had acquired U.K.-based SNTC, developer of communication software for the wireless market. The purchase price was not disclosed.<p>July 12, 1999 -- Rogers Communications Inc., one of Canada's leading telecommunications companies, receives a $400 million investment from Microsoft. Rogers agrees to license Microsoft software for up to 1 million TV set-top boxes.<p>May 12, 1999 -- Microsoft announces it has tendered an offer for Sendit AB for $127.5 million. Stockholm-based Sendit produces server software that helps bring wireless Internet access to mobile phones.<p>May 10, 1999 -- Nextel Communications receives a $600 million investment from Microsoft in return for offering its customers a wireless MSN.com portal that would include e-mail, calendar and address book services.<p>May 6, 1999 -- Microsoft agrees to purchase $5 billion in AT&T stock. In return, AT&T promises to use Microsoft's TV software in its set-top boxes and back-end computers. The deal remains Microsoft's biggest single outside investment.<p>Jan. 25, 1999 -- Microsoft and NTL Inc. agree to jointly develop new broadband services for customers in the United Kingdom and Ireland. Microsoft made a $500 million investment in NTL to accelerate deployment of data, video and voice services over its fiber-optic network.<p>Jan. 25, 1999 -- United Pan-Europe Communications and Microsoft agree to establish a strategic relationship to deliver broadband services in Europe. Microsoft acquires $300 million in UPC shares.<p>Dec. 14, 1998 -- Microsoft invests $200 million in Qwest Communications' new nationwide fiber-optic network. The investment represents a 1.3 percent stake in Qwest. <p>
+
+</FONT>
+
+
+<!--BOTTOM TEMPLATE-->
+<CENTER>
+<IMG SRC="/editorial/images/cobrand/avlive/aplogo.gif"><BR>
+<FONT FACE="ARIAL,HELVETICA,SANS-SERIF" SIZE=1>Copyright 
+1999 Associated Press. All rights reserved.<BR>
+This material may not be published, broadcast, 
+rewritten or redistributed.
+</FONT></CENTER>
+</TD></TR></TABLE></TD>
+<td valign=top width=25% bgcolor=#FFFFFF rowspan=2>
+<table width=100% border=0 cellpadding=10 cellspacing=0>
+<TR><TD WIDTH=100% VALIGN=TOP">
+<h5>What's on AltaVista Now</h5>
+
+<table cellpadding=0 cellspacing=5 border=0 width=100% bgcolor=#FFFFFF><tr>
+<td width=60><a href=http://live.av.com/scripts/editorial.dll?bfromind=948&eeid=1352771&eetype=article&render=y target=_top><img src=http://images.av.com/liveimages/alta/AvNow/now_live.gif width=60 height=40 align=absmiddle border=0></a></td>
+
+<td class=smtxt><b>Webcast</b>: <a href=http://live.av.com/scripts/editorial.dll?bfromind=948&eeid=1352771&eetype=article&render=y target=_top>Today's top events from Yack.com</a></td>
+</tr>
+<tr><td colspan=2></td></tr>
+<tr><td colspan=2 class=smtxt><b>NFL</b>: <a href=http://live.av.com/avlive/scripts/avf.dll?src=/statssports/avlive_nfl_scores.HTML target=_top>Vikings win; follow Seahawks-Dolphins live!</a></td></tr>
+<tr><td colspan=2></td></tr>
+<tr><td colspan=2 class=smtxt><b>
+<font color=#FF6600>&#183;</font> Sports: <a href=http://live.av.com/scripts/editorial.dll?bfromind=975&eeid=1353454&eetype=article&render=y target=_top>Stanford upset</a><br>
+<font color=#FF6600>&#183;</font> Net: <a href=http://live.av.com/scripts/editorial.dll?eetype=Article&eeid=1353241&render=y target=_top>Pac Bell hacked</a><br>
+<font color=#FF6600>&#183;</font> WebCams: <a href=http://live.av.com/scripts/staticpage.dll?only=y&spage=cammunity/cam_select_home.htm target=_top>Pick your favorite</a><br>
+<font color=#FF6600>&#183;</font> Movies: <a href=http://live.av.com/scripts/editorial.dll?bfromind=877&eeid=1354517&eetype=article&render=y target=_top>The best of '99</a><br>
+<font color=#FF6600>&#183;</font> Free: <a href=http://www.zdnet.com/downloads/altavista/ target=_top>Internet access</a></b>
+</td></tr>
+<tr><td colspan=2></td></tr>
+<tr><td valign=top colspan=2 class=smtxt><a href=http://live.av.com/avlive/scripts/community.dll?ep=0 target=_top>Join the fun in AltaVista's community</a></td></tr>
+<tr><td colspan=2></td></tr>
+<tr><td valign=top colspan=2 class=smtxt>
+<b>Fast Find:</b><br>
+<a href="http://live.av.com/s?spage=yp/busdir.htm" target=_top>Yellow Pgs</a> | <a href="http://live.av.com/s?ep=8200" target=_top>Directions</a> | <a href="http://babelfish.altavista.com/" target=_top>Translation</a> | <a href="http://av.gist.com/av/index.dpg" target=_top>TV</a>
+</td></tr>
+</table>
+
+
+</TD></TR></TABLE>
+<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td bgcolor=#000000 valign=top><IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr></table>
+<table width=100% BGCOLOR=#FF9966 border=0 cellpadding=10 cellspacing=0>
+<TR><TD WIDTH=100% VALIGN=TOP>
+
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left valign=top>
+<font class=smmod>Don't Miss These</font>
+<br>
+<font face=arial,helvetica size=1>
+Live Web events: <a href="http://av.yack.com/">Yack.com's best</a><br>
+
+Careers: <a href="http://careers.altavista.com/">Find a new job</a><br>
+
+Shopping: <a href="http://shopping.altavista.com/">The lowest prices</a><br>
+
+WebCams: <a href="/scripts/staticpage.dll?only=y&spage=cammunity/cam_select_home.htm&ck=">A new one every day!</a><br>
+
+</font>
+</td>
+</tr>
+</table>
+
+
+</TD></TR></TABLE>
+<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td bgcolor=#000000 valign=top><IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr></table>
+
+<!--#include "editorial/news_poll.htm"-->
+
+<table width=100% border=0 cellpadding=0 cellspacing=0><tr><td bgcolor=#000000 valign=top><IMG src=/cobrand/AVLive/colors/clear.gif width=1 height=1 border=0></td></tr></table>
+
+<Table width=187 Border=0 cellspacing=0 cellpadding=0><tr><Td></td></tr></table>
+
+</td></tr></table>
+<form>
+<input type="hidden" name="eeid" value="xxeeidxx">
+<input type="hidden" name="eetype" value="xxeetypexx">
+</form>
+<br Clear=all>
+<table width=100% cellpadding=0 cellspacing=0 border=0 bgcolor=#ffffff>
+<tr>
+<td align=center>
+<font id=nt>
+<a href="http://doc.altavista.com/company_info/about_av/background.shtml">About AltaVista</a> | 
+<a href="http://live.av.com/s?spage=help/liveintroduction.htm">Help</a> | 
+<a href="http://doc.altavista.com/help/contact/live.shtml">Contact Us</a> | 
+<a href="http://www.doubleclick.net/advertisers/altavista/">Advertise With Us</a>
+<br>
+<a href="http://doc.altavista.com/business_solutions/bus_solutions.shtml">Business Solutions</a> | 
+<a href="http://doc.altavista.com/company_info/jobs/jobs.shtml">Job Openings</a> | 
+<a href="http://doc.altavista.com/company_info/press/press_welcome.shtml">Press Room</a> | 
+<a href="http://doc.altavista.com/legal/privacy.shtml">Privacy</a> | 
+<a href="http://doc.altavista.com/legal/termsofuse.shtml">Terms of Use</a> | 
+<a href="http://www.cmgi.com/">A CMGI Company</a>
+<br>
+<a href="http://www.shopping.com/">Shopping</a> | 
+<a href="http://money.av.com/s?spage=fc/home.htm&ck=">Money</a> | 
+<a href="http://news.av.com/">News</a> | 
+<a href="http://sports.av.com/">Sports</a> | 
+<a href="http://search.thetrip.com/">Travel</a> | 
+<a href="http://careers.av.com/">Careers</a> | 
+<a href="http://health.av.com/">Health</a> | 
+<a href="http://live.av.com/scripts/editorial.dll?brequest=index&action=p&recid=877">Entertainment</a>
+<br><br>
+<br>Copyright&nbsp;&copy; 2000 AltaVista Company. AltaVista &reg; is a registered trademark and Smart is Beautiful<br>and the AltaVista logo are trademarks of AltaVista Company.<br>
+</font><br> 
+</td>
+</tr>
+</table>
+<table width=100% cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td>
+ 
+</td>
+</tr>
+<tr><td>
+<FONT SIZE=1 face="helvetica,arial">
+wcavl5
+</FONT>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+ 

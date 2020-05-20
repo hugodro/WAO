@@ -1,0 +1,18 @@
+LIBSRCS= bblockElements.cpp \
+  bodyElements.cpp \
+  btextElements.cpp \
+  container.cpp \
+  htAnalyzer.cpp \
+  htDoc.cpp \
+  htDTD.cpp \
+  htElement.cpp \
+  htElementDef.cpp \
+  htmlPage.cpp \
+  htRender.cpp \
+  nonStdElements.cpp \
+  scanner.cpp \
+  sformElements.cpp \
+  titleElements.cpp \
+  topElements.cpp
+
+LIBOBJS=$(LIBSRCS:.cpp=.o)
